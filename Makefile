@@ -6,11 +6,11 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/02 18:02:36 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/02 18:09:02 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
