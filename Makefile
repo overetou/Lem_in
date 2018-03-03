@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/03 19:33:40 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/03 20:14:58 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJ_DIR	= objs/
 INC_DIR	= includes/
 LIB_DIR	= libft/
 
+DIR_NAME = lem_in
 INC_BASE = lem_in.h
 
 LIBFT_LIB = $(LIB_DIR)libft.a
@@ -63,14 +64,14 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 clean:
 	@make -C $(LIB_DIR) clean
 	@rm -rf $(OBJ_DIR)
-	@echo "Delete" [ $(NAME)/objs ] $(RM)
+	@echo "Delete" [ $(DIR_NAME)/objs ] $(RM)
 
 fclean:
 	@make -C $(LIB_DIR) fclean
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@echo "Delete" [ $(NAME)/objs ] $(RM)
-	@echo "Delete" [ $(NAME) ] $(RM)
+	@echo "Delete" [ $(DIR_NAME)/objs ] $(RM)
+	@echo "Delete" [ $(DIR_NAME) ] $(RM)
 
 re: fclean all
 

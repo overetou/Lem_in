@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:35:53 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/14 01:30:46 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/03 20:02:08 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = -1;
+	if (!s)
+		return (0);
 	while (s[++i])
 		;
 	return (i);
