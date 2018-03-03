@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/03 20:14:58 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/03 20:47:44 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,9 @@ FLAGS	= -Wall -Wextra -Werror
 DFLAGS	= fsanitize=address
 
 SRC_BASE = \
+parse.c\
+check.c\
+error.c\
 main.c
 
 SRC_DIR	= srcs/
