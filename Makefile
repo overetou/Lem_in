@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/02 18:09:02 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/03 17:54:17 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC_DIR	= srcs/
 OBJ_DIR	= objs/
 INC_DIR	= includes/
 LIB_DIR	= libft/
+
+INC_BASE = lem_in.h
 
 LIBFT_LIB = $(LIB_DIR)libft.a
 
@@ -52,7 +54,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(dir $(OBJS))
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 	@$(CC) $(FLAGS) -I $(INC_DIR) -I $(LIB_DIR)$(INC_DIR) -c $< -o $@
 	@echo "Linking" [ $< ] $(OK)
 
@@ -64,12 +66,12 @@ fcleanlib:
 
 clean: cleanlib
 	@rm -rf $(OBJ_DIR)
-	@echo "Delete" [ filler/objs ] $(OK)
+	@echo "Delete" [ $(NAME)/objs ] $(OK)
 
 fclean: fcleanlib
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@echo "Delete" [ filler/objs ] $(OK)
+	@echo "Delete" [ $(NAME)/objs ] $(OK)
 	@echo "Delete" [ $(NAME) ] $(OK)
 
 re: fclean all
