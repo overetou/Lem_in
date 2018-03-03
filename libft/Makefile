@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/02/21 16:15:07 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/03 19:32:17 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,31 +114,36 @@ C_OK	= "\033[35m"
 C_GOOD	= "\033[32m"
 C_ERROR	= "\033[31m"
 C_WARN	= "\033[33m"
+C_WAIT	= "\033[36m"
 
 SUCCESS	= $(C_GOOD)SUCCESS$(C_NO)
-OK		= $(C_OK)OK$(C_NO)
+OK		= $(C_WARN)OK$(C_NO)
+WAIT	= $(C_WAIT)WAIT$(C_NO)
+RM		= $(C_OK)OK$(C_NO)
 
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	@ar rcs $@ $(OBJS)
-	@echo "Compiling & indexing" [ $(NAME) ] $(SUCCESS)
+	@echo "\nCompiling & indexing" [ $(NAME) ] $(SUCCESS)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(dir $(OBJS))
+	@echo "Prepare" [ $(NAME) ] $(WAIT)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) -c $(FLAGS) -I $(INC_DIR) $< -o $@
-	@echo "Linking" [ $< ] $(OK)
+	@echo -n '.'
+#	@echo  "Linking" [ $< ] $(OK)
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "Delete" [ libft/objs ] $(OK)
+	@echo "Delete" [ libft/objs ] $(RM)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Delete" [ $(NAME) ] $(OK)
+	@echo "Delete" [ $(NAME) ] $(RM)
 
 re: fclean all
 

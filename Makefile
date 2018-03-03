@@ -6,14 +6,15 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/03 17:54:17 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/03 19:33:40 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem-in
+NAME	= lem-in
 
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
+DFLAGS	= fsanitize=address
 
 SRC_BASE = \
 main.c
@@ -37,7 +38,8 @@ C_ERROR	= "\033[31m"
 C_WARN	= "\033[33m"
 
 SUCCESS	= $(C_GOOD)SUCCESS$(C_NO)
-OK		= $(C_OK)OK$(C_NO)
+OK		= $(C_WARN)OK$(C_NO)
+RM		= $(C_OK)OK$(C_NO)
 
 all: $(NAME)
 
@@ -48,7 +50,7 @@ $(NAME): $(LIBFT_LIB) $(OBJ_DIR) $(OBJS)
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
 $(LIBFT_LIB):
-	@make -C $(LIB_DIR)
+	@make -j -C $(LIB_DIR)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -58,21 +60,17 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 	@$(CC) $(FLAGS) -I $(INC_DIR) -I $(LIB_DIR)$(INC_DIR) -c $< -o $@
 	@echo "Linking" [ $< ] $(OK)
 
-cleanlib:
+clean:
 	@make -C $(LIB_DIR) clean
-
-fcleanlib:
-	@make -C $(LIB_DIR) fclean
-
-clean: cleanlib
 	@rm -rf $(OBJ_DIR)
-	@echo "Delete" [ $(NAME)/objs ] $(OK)
+	@echo "Delete" [ $(NAME)/objs ] $(RM)
 
-fclean: fcleanlib
+fclean:
+	@make -C $(LIB_DIR) fclean
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
-	@echo "Delete" [ $(NAME)/objs ] $(OK)
-	@echo "Delete" [ $(NAME) ] $(OK)
+	@echo "Delete" [ $(NAME)/objs ] $(RM)
+	@echo "Delete" [ $(NAME) ] $(RM)
 
 re: fclean all
 
