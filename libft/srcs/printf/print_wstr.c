@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:40:50 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/10 16:54:25 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:07:53 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 void	put_wstr_c(t_pf_env *e, char c)
 {

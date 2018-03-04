@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:38:06 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/11 03:28:18 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:06:04 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 void	init_flag(t_pf_flag *flag)
 {

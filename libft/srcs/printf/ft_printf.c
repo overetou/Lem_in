@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:35:00 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/11 14:44:32 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:05:56 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 int		ft_printf(const char *restrict fmt, ...)
 {

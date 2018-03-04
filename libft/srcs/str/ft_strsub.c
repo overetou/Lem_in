@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:36:27 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/10 19:46:57 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:12:49 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {

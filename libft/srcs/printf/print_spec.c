@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:40:19 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/14 01:28:24 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:06:59 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 void	spec_base(t_pf_env *e, char type)
 {

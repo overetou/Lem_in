@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/04 21:43:35 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/05 00:14:48 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,9 +102,7 @@ str/ft_strstr.c\
 str/ft_strsub.c\
 str/ft_strtrim.c
 
-INC_BASE = \
-libft.h\
-ft_printf.h
+INC_BASE = libft.h
 
 SRC_DIR	= srcs/
 OBJ_DIR	= objs/
@@ -133,7 +131,7 @@ $(OBJ_DIR):
 	@mkdir -p $(dir $(OBJS))
 	@echo "Preparing" [ $(NAME) ] $(WAIT)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)*.h
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 	@$(CC) -c $(FLAGS) -I $(INC_DIR) $< -o $@
 	@printf "\r\033[38;5;11mLinking [ %s ]\033[0m\033[K" "$@"
 

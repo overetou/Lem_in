@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:35:08 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/10 19:46:28 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:12:14 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 char	*ft_strchr(const char *s, int c)
 {

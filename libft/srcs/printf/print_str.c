@@ -6,11 +6,11 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:40:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/02/10 16:53:43 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:07:15 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <libft.h>
 
 void	print_str_width(t_pf_env *e)
 {

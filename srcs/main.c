@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:02:44 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/03 20:15:21 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 00:13:53 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int			main(void)
 {
-	ft_printf("%d", ft_strlen("salut"));
 	return (0);
 }
