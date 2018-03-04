@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/04 23:59:22 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/05 00:01:26 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ clean: cleanlib
 	@echo "Delete" [ $(DIR_NAME)/objs ] $(RM)
 
 fclean: clean fcleanlib
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 	@echo "Delete" [ $(DIR_NAME) ] $(RM)
 
 re: fclean all
