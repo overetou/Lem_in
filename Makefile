@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/04 16:37:21 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/04 23:59:22 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJ_DIR) $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME) \
-		-I $(INC_DIR) -I $(LIB_DIR)/$(INC_DIR) \
+		-I $(INC_DIR) -I $(LIB_DIR)$(INC_DIR) \
 		$(LIBFT_LIB) $(FLAGS)
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
@@ -76,4 +76,4 @@ fclean: clean fcleanlib
 
 re: fclean all
 
-.PHONY: fclean clean re
+.PHONY: fclean clean fcleanlib cleanlib re
