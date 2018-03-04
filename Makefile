@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/04 13:48:02 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/04 16:37:21 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,6 @@ FLAGS	= -Wall -Wextra -Werror
 DFLAGS	= fsanitize=address
 
 SRC_BASE = \
-parse.c\
-check.c\
-error.c\
 main.c
 
 SRC_DIR	= srcs/
@@ -36,14 +33,13 @@ SRCS	= $(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS	= $(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
 
 C_NO	= "\033[00m"
-C_OK	= "\033[35m"
-C_GOOD	= "\033[32m"
-C_ERROR	= "\033[31m"
-C_WARN	= "\033[33m"
+C_GREEN	= "\033[32m"
+C_RED	= "\033[31m"
+C_YELL	= "\033[33m"
 
-SUCCESS	= $(C_GOOD)SUCCESS$(C_NO)
-OK		= $(C_WARN)OK$(C_NO)
-RM		= $(C_OK)OK$(C_NO)
+SUCCESS	= $(C_GREEN)SUCCESS$(C_NO)
+OK		= $(C_YELL)OK$(C_NO)
+RM		= $(C_RED)OK$(C_NO)
 
 all: $(NAME)
 
@@ -64,18 +60,20 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 	@$(CC) $(FLAGS) -I $(INC_DIR) -I $(LIB_DIR)$(INC_DIR) -c $< -o $@
 	@echo "Linking" [ $< ] $(OK)
 
-clean:
+cleanlib:
 	@make -C $(LIB_DIR) clean
+
+fcleanlib:
+	@make -C $(LIB_DIR) fclean
+
+clean: cleanlib
 	@rm -rf $(OBJ_DIR)
 	@echo "Delete" [ $(DIR_NAME)/objs ] $(RM)
 
-fclean:
-	@make -C $(LIB_DIR) fclean
-	@rm -rf $(OBJ_DIR)
+fclean: clean fcleanlib
 	@rm -f $(NAME)
-	@echo "Delete" [ $(DIR_NAME)/objs ] $(RM)
 	@echo "Delete" [ $(DIR_NAME) ] $(RM)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: fclean clean re

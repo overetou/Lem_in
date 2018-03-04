@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/04 13:56:31 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/04 16:31:37 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,26 +102,25 @@ str/ft_strstr.c\
 str/ft_strsub.c\
 str/ft_strtrim.c
 
+INC_BASE = \
+libft.h\
+ft_printf.h
+
 SRC_DIR	= srcs/
 OBJ_DIR	= objs/
 INC_DIR	= includes/
-
-INC_BASE = libft.h
 
 SRCS	= $(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS	= $(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
 
 C_NO	= "\033[00m"
-C_OK	= "\033[35m"
-C_GOOD	= "\033[32m"
-C_ERROR	= "\033[31m"
-C_WARN	= "\033[33m"
-C_WAIT	= "\033[36m"
+C_RED	= "\033[31m"
+C_GREEN	= "\033[32m"
+C_CYAN	= "\033[36m"
 
-SUCCESS	= $(C_GOOD)SUCCESS$(C_NO)
-OK		= $(C_WARN)OK$(C_NO)
-WAIT	= $(C_WAIT)WAIT$(C_NO)
-RM		= $(C_OK)OK$(C_NO)
+SUCCESS	= $(C_GREEN)SUCCESS$(C_NO)
+WAIT	= $(C_CYAN)WAIT$(C_NO)
+RM		= $(C_RED)OK$(C_NO)
 
 all: $(NAME)
 
@@ -134,18 +133,25 @@ $(OBJ_DIR):
 	@mkdir -p $(dir $(OBJS))
 	@echo "Preparing" [ $(NAME) ] $(WAIT)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)*.h
 	@$(CC) -c $(FLAGS) -I $(INC_DIR) $< -o $@
 	@printf "\r\033[38;5;11mLinking [ %s ]\033[0m\033[K" "$@"
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@echo "Delete" [ libft/objs ] $(RM)
+	@if [ -e $(OBJ_DIR) ]; \
+	then \
+			rm -rf $(OBJ_DIR); \
+			echo "Delete" [ libft/objs ] $(RM); \
+	fi;
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "Delete" [ $(NAME) ] $(RM)
+	@if [ -e $(NAME) ]; \
+	then \
+			rm -rf $(NAME); \
+			echo "Delete" [ $(NAME) ] $(RM); \
+	fi;
 
-re: fclean all
+re: fclean
+	@make $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: fclean clean re
