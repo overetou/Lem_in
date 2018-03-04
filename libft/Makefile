@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/03 21:26:26 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/04 13:56:31 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,7 +127,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	@ar rcs $@ $(OBJS)
-	@echo "Compiling & indexing" [ $(NAME) ] $(SUCCESS)
+	@echo "\rCompiling & indexing\033[K" [ $(NAME) ] $(SUCCESS)
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -136,7 +136,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 	@$(CC) -c $(FLAGS) -I $(INC_DIR) $< -o $@
-#	@echo  "Linking" [ $< ] $(OK)
+	@printf "\r\033[38;5;11mLinking [ %s ]\033[0m\033[K" "$@"
 
 clean:
 	@rm -rf $(OBJ_DIR)
