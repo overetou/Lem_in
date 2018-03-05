@@ -6,11 +6,23 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 18:08:53 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/05 19:32:57 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
+
+void	dsp_rooms(t_room *r)
+{
+	r = r->next;
+	while (r)
+	{
+		ft_printf("Name = %s\n", r->name);
+		ft_printf("start = %d\n", r->start);
+		ft_printf("end = %d\n-----------------------------\n", r->end);
+		r = r->next;
+	}
+}
 
 t_room	*add_room(void)
 {
@@ -70,17 +82,17 @@ t_room	*parse(t_env *e)
 	head = r;
 	while (get_next_line(0, &line))
 	{
+		head->next = add_room();
+		head = head->next;
 		if (ft_strncmp(line, "##", 2) == 0)
-			start_end(e, line + 2, &line, r);
-		if (check_line(line, r))
-		{
-			head->next = add_room();
-			head = head->next;
-		}
+			start_end(e, line + 2, &line, head);
+		if (!check_line(line, head))
+			break ;
 		//else if (check_tube(line))
 		//	return ;
 		free(line);
 	}
-	r->next = NULL;
+	head->next = NULL;
+	dsp_rooms(r);
 	return (r);
 }
