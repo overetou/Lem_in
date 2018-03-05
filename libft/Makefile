@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/05 01:03:23 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/05 01:18:27 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ str/ft_strtrim.c
 
 INC_BASE = libft.h
 
+CUR_DIR	= libft/
 SRC_DIR	= srcs/
 OBJ_DIR	= objs/
 INC_DIR	= includes/
@@ -139,7 +140,7 @@ clean:
 	@if [ -e $(OBJ_DIR) ]; \
 	then \
 			rm -rf $(OBJ_DIR); \
-			echo "Cleaning" [ libft/objs ] $(RM); \
+			echo "Cleaning" [ $(CUR_DIR)objs ] $(RM); \
 	fi;
 
 fclean: clean

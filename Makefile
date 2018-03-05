@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/05 01:02:56 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/05 01:18:36 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ DFLAGS	= fsanitize=address
 SRC_BASE = \
 main.c
 
+INC_BASE = lem_in.h
+
+CUR_DIR	= lem_in/
 SRC_DIR	= srcs/
 OBJ_DIR	= objs/
 INC_DIR	= includes/
 LIB_DIR	= libft/
-
-DIR_NAME = lem_in
-INC_BASE = lem_in.h
 
 LIBFT_LIB = $(LIB_DIR)libft.a
 
@@ -68,11 +68,11 @@ fcleanlib:
 
 clean: cleanlib
 	@rm -rf $(OBJ_DIR)
-	@echo "Cleaning" [ $(DIR_NAME)/objs ] $(RM)
+	@echo "Cleaning" [ $(CUR_DIR)objs ] $(RM)
 
 fclean: clean fcleanlib
 	@rm -rf $(NAME)
-	@echo "Delete" [ $(DIR_NAME) ] $(RM)
+	@echo "Delete" [ $(NAME) ] $(RM)
 
 re: fclean all
 
