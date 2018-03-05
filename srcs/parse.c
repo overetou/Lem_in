@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 16:43:52 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:04:45 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int			check_line(char *line, t_room *r)
 	tab = ft_strsplit(line, ' ');
 	while (tab[i])
 		i++;
-	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3)
-		return (NULL);
-	while (tab
-	ret = ft_strdup(tab[0]);
+	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3
+	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2]))
+		return (0);
+	r->name = ft_strdup(tab[0]);
 	ft_strplitdel(tab);
+	return (1);
 }
 
 void		start_end(t_env *e, t_room *r)
