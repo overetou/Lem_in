@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/05 00:14:48 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/05 01:00:39 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)$(INC_BASE)
 	@$(CC) -c $(FLAGS) -I $(INC_DIR) $< -o $@
-	@printf "\r\033[38;5;11mLinking [ %s ]\033[0m\033[K" "$@"
+	@printf "\r\033[38;5;11mLinking [ %s ]\033[0m\033[K" "$<"
 
 clean:
 	@if [ -e $(OBJ_DIR) ]; \
