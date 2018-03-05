@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 19:32:57 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/05 20:29:36 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	dsp_rooms(t_room *r)
 {
-	r = r->next;
 	while (r)
 	{
 		ft_printf("Name = %s\n", r->name);
@@ -30,6 +29,7 @@ t_room	*add_room(void)
 	new = (t_room*)malloc(sizeof(t_room));
 	new->start = 0;
 	new->end = 0;
+	new->next = NULL;
 	return (new);
 }
 
@@ -82,16 +82,19 @@ t_room	*parse(t_env *e)
 	head = r;
 	while (get_next_line(0, &line))
 	{
-		head->next = add_room();
-		head = head->next;
 		if (ft_strncmp(line, "##", 2) == 0)
 			start_end(e, line + 2, &line, head);
 		if (!check_line(line, head))
 			break ;
+		head->next = add_room();
+		head = head->next;
 		//else if (check_tube(line))
 		//	return ;
 		free(line);
 	}
+	head = r;
+	while ((head->next)->next)
+		head = head->next;
 	head->next = NULL;
 	dsp_rooms(r);
 	return (r);
