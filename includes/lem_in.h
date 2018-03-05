@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 16:44:01 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:21:47 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ typedef struct		s_env
 	int		end;
 }					t_env;
 
-void		parse(t_env *e, t_room *r);
+t_room	*parse(t_env *e);
 
 #endif

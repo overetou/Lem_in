@@ -6,22 +6,27 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 17:04:45 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:08:53 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-void		ft_exit()
+t_room	*add_room(void)
 {
-	ft_printf("ERROR\n");
-	exit(0);
+	t_room *new;
+	new = (t_room*)malloc(sizeof(t_room));
+	new->start = 0;
+	new->end = 0;
+	return (new);
 }
 
-int			check_line(char *line, t_room *r)
+int		check_line(char *line, t_room *r)
 {
 	char**tab;
+	int i;
 	
+	i = 0;
 	tab = ft_strsplit(line, ' ');
 	while (tab[i])
 		i++;
@@ -29,47 +34,53 @@ int			check_line(char *line, t_room *r)
 	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2]))
 		return (0);
 	r->name = ft_strdup(tab[0]);
-	ft_strplitdel(tab);
+	ft_strsplitdel(tab);
 	return (1);
 }
 
-void		start_end(t_env *e, t_room *r)
+int		start_end(t_env *e, char *str, char **line, t_room *r)
 {
-	char **tab;
-	char *line;
-	int i;
-
-	i = 0;
-	get_next_line(0, &line);
-	tab = ft_strsplit(line, ' ');
-	while (tab[++i])
-		;
-	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3)
-		return (ft_exit()) ;
-	r->name = ft_strdup(tab[0]);
-	ft_strsplitdel(tab);
-	free(line);
-	e->start = 1;
+	if (ft_strcmp(str, "start") == 0 && !e->start)
+	{
+		(e->start)++;
+		r->start = 1;
+	}
+	else if (ft_strcmp(str, "end") == 0 && !e->end)
+	{
+		(e->end)++;
+		r->end = 1;
+	}
+	else 
+		return (0);
+	//free(line);
+	get_next_line(0, line);
+	return (1);
 }
 
-t_room		*parse(t_env *e)
+t_room	*parse(t_env *e)
 {
 	char	*line;
 	t_room	*r;
+	t_room	*head;
 
 	get_next_line(0, &line);
 	e->ant = ft_atoi(line);
-	while (1)
+	free(line);
+	r = add_room();
+	head = r;
+	while (get_next_line(0, &line))
 	{
-		r = (t_room*)malloc(sizeof(t_room));
-		if (get_next_line(0, &line) < 1)
-			break ;
-		if (!ft_strncmp(line, "##"))
-			start_end(e, r, line + 2));
-		if (check_line(new_line))
-			r = r->next;
-		else if (check_tube(line))
-			return ;
+		if (ft_strncmp(line, "##", 2) == 0)
+			start_end(e, line + 2, &line, r);
+		if (check_line(line, r))
+		{
+			head->next = add_room();
+			head = head->next;
+		}
+		//else if (check_tube(line))
+		//	return ;
 		free(line);
 	}
+	r->next = NULL;
+	return (r);
 }
