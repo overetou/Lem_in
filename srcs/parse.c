@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 16:28:14 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:43:52 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@ void		ft_exit()
 {
 	ft_printf("ERROR\n");
 	exit(0);
+}
+
+int			check_line(char *line, t_room *r)
+{
+	char**tab;
+	
+	tab = ft_strsplit(line, ' ');
+	while (tab[i])
+		i++;
+	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3)
+		return (NULL);
+	while (tab
+	ret = ft_strdup(tab[0]);
+	ft_strplitdel(tab);
 }
 
 void		start_end(t_env *e, t_room *r)
