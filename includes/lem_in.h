@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 13:38:50 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/05 15:50:21 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,24 @@ typedef struct	s_link
 {
 	char			*name;
 	struct s_link	*next;
-}	
+}				t_link;
 
 typedef struct	s_room
 {
 	char			*name;
 	struct t_link	*link;
 	struct s_room	*next;
+	int				start;
+	int				end;
 }				t_room;
+
+typedef struct		s_env
+{
+	int		ant;
+	int		start;
+	int		end;
+}					t_env;
+
+void		parse(t_env *e, t_room *r);
+
 #endif

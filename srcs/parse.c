@@ -6,49 +6,55 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 15:18:57 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:28:14 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-char		**check_line(char *line)
+void		ft_exit()
 {
-	char	**tab;
-	char	*ret;
-	int		i;
-
-	i = 0;
-	if (strcmp(line, "##start") == 0 || strcmp(line, "##end") == 0)
-		return (line);
-	tab = ft_strsplit(line, ' ');
-	while (tab[i])
-		i++;
-	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3)
-		return (NULL);
-	ret = ft_strdup(tab[0]);
-	ft_strplitdel(tab);
-	return (1);
+	ft_printf("ERROR\n");
+	exit(0);
 }
 
-void		parse(void)
+void		start_end(t_env *e, t_room *r)
 {
-	int		ant;
+	char **tab;
+	char *line;
+	int i;
+
+	i = 0;
+	get_next_line(0, &line);
+	tab = ft_strsplit(line, ' ');
+	while (tab[++i])
+		;
+	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3)
+		return (ft_exit()) ;
+	r->name = ft_strdup(tab[0]);
+	ft_strsplitdel(tab);
+	free(line);
+	e->start = 1;
+}
+
+t_room		*parse(t_env *e)
+{
 	char	*line;
 	t_room	*r;
 
-	ant = ft_atoi(line);
-	r = (t_room*)malloc(sizeof(t_room));
 	get_next_line(0, &line);
-	free(line);
-	if (ant == 0)
-		return (0);	
-	while (get_next_line(0, &line))
+	e->ant = ft_atoi(line);
+	while (1)
 	{
-		if (check_line(line))
-
-		else
+		r = (t_room*)malloc(sizeof(t_room));
+		if (get_next_line(0, &line) < 1)
 			break ;
+		if (!ft_strncmp(line, "##"))
+			start_end(e, r, line + 2));
+		if (check_line(new_line))
+			r = r->next;
+		else if (check_tube(line))
+			return ;
+		free(line);
 	}
-	return (0);
 }
