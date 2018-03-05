@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/05 01:00:39 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/05 01:03:23 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ clean:
 	@if [ -e $(OBJ_DIR) ]; \
 	then \
 			rm -rf $(OBJ_DIR); \
-			echo "Delete" [ libft/objs ] $(RM); \
+			echo "Cleaning" [ libft/objs ] $(RM); \
 	fi;
 
 fclean: clean
