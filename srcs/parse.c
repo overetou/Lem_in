@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/05 20:29:36 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/06 15:56:43 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,22 @@ void	dsp_rooms(t_room *r)
 	}
 }
 
-t_room	*add_room(void)
+t_room	*add_room(char *name)
 {
 	t_room *new;
+	
 	new = (t_room*)malloc(sizeof(t_room));
 	new->start = 0;
 	new->end = 0;
+	new->name = name;
 	new->next = NULL;
 	return (new);
 }
 
-int		check_line(char *line, t_room *r)
+int		check_room(char *line)
 {
-	char**tab;
-	int i;
+	char	**tab;
+	int		i;
 	
 	i = 0;
 	tab = ft_strsplit(line, ' ');
@@ -45,7 +47,6 @@ int		check_line(char *line, t_room *r)
 	if (tab[0][0] == 'L' || tab[0][0] == '#' || i != 3
 	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2]))
 		return (0);
-	r->name = ft_strdup(tab[0]);
 	ft_strsplitdel(tab);
 	return (1);
 }
