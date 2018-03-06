@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 15:41:39 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/06 16:18:52 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void		lem_parse(t_env *e)
 	while (get_next_line(0, &line) > 0)
 	{
 		if (ft_strcmp(line, "##start") || ft_strcmp(line, "##end"))
-			start_end(e);
+			start_end(e, line);
 		else if (line[0] == '#')
 			store_cmt(e, line);
 		else if (check_room(line))
-			add_room(e, line);
+			add_room(line);
 		else
 		{
 			free(line);

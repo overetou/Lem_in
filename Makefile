@@ -6,20 +6,21 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/06 14:41:07 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/06 16:20:33 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= lem-in
 
 CC		= gcc
-FLAGS	= -Wall -Wextra -Werror
-DFLAGS	= fsanitize=address
+FLAGS	= -Wall -Wextra -Werror $(DFLAGS)
+DFLAGS	= -fsanitize=address
 
 SRC_BASE = \
 lem_in.c\
 lem_main.c\
 lem_store.c\
+parse.c\
 lem_exit.c
 
 INC_BASE = lem_in.h

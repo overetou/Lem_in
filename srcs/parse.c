@@ -6,12 +6,12 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 14:38:35 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 15:56:43 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/06 16:19:50 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
-
+/*
 void	dsp_rooms(t_room *r)
 {
 	while (r)
@@ -22,14 +22,12 @@ void	dsp_rooms(t_room *r)
 		r = r->next;
 	}
 }
-
+*/
 t_room	*add_room(char *name)
 {
 	t_room *new;
 	
 	new = (t_room*)malloc(sizeof(t_room));
-	new->start = 0;
-	new->end = 0;
 	new->name = name;
 	new->next = NULL;
 	return (new);
@@ -50,7 +48,7 @@ int		check_room(char *line)
 	ft_strsplitdel(tab);
 	return (1);
 }
-
+/*
 int		start_end(t_env *e, char *str, char **line, t_room *r)
 {
 	if (ft_strcmp(str, "start") == 0 && !e->start)
@@ -100,3 +98,4 @@ t_room	*parse(t_env *e)
 	dsp_rooms(r);
 	return (r);
 }
+*/
