@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 16:51:02 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:18:43 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 # include <libft.h>
 
-typedef struct	s_room
-{
-	char			*name;
-	struct t_data	*link;
-	struct s_room	*next;
-}				t_room;
-
 typedef struct	s_data
 {
 	char			*name;
 	struct s_data 	*next;
 }				t_data;
+
+typedef struct	s_room
+{
+	char			*name;
+	t_data			*link;
+	struct s_room	*next;
+}				t_room;
 
 typedef struct		s_env
 {
@@ -47,6 +47,8 @@ void		store_link(t_env *e, char *line);
 void		lem_exit(t_env *e);
 t_room		*add_room(char *name);
 int			check_room(char *line);
-void		add_link(t_room *room, char *name)
+void		add_link(t_room *room, char *name);
+int			check_link(t_env *e, char *line);
+int			store_mdr(t_env *e);
 
 #endif

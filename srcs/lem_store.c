@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 16:50:27 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:24:26 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	add_link(t_room *room, char *name)
 {
 	t_data	*link;
 
-	link = e->room->link;
+	link = room->link;
 	if (!link)
 	{
 		link = (t_data*)malloc(sizeof(t_data));
@@ -84,7 +84,7 @@ void		start_end(t_env *e, char *line)
 	char	*l;
 	t_room	*tmp;
 
-	get_next_line(0, &l);	
+	get_next_line(0, &l);
 	tab = ft_strsplit(l, ' ');
 	tmp = e->room;
 	while (tmp->next)

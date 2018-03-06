@@ -6,13 +6,13 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 16:03:50 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/06 16:17:53 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:21:05 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-int	find_room(char	*name, t_env *env)
+int			find_room(char	*name, t_env *e)
 {
 	t_room *r;
 
@@ -26,7 +26,7 @@ int	find_room(char	*name, t_env *env)
 	return (0);
 }
 
-int	check_link(char *line)
+int			check_link(t_env *e, char *line)
 {
 	char	**tab;
 	int		x;
