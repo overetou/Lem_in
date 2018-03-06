@@ -50,5 +50,6 @@ int			check_room(char *line);
 void		add_link(t_room *room, char *name);
 int			check_link(t_env *e, char *line);
 int			store_mdr(t_env *e);
+void		dsp_rooms(t_room *r);
 
 #endif

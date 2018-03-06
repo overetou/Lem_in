@@ -17,8 +17,6 @@ void	dsp_rooms(t_room *r)
 	while (r)
 	{
 		ft_printf("Name = %s\n", r->name);
-		ft_printf("start = %d\n", r->start);
-		ft_printf("end = %d\n-----------------------------\n", r->end);
 		r = r->next;
 	}
 }
@@ -28,7 +26,7 @@ t_room	*add_room(char *name)
 	t_room *new;
 	
 	new = (t_room*)malloc(sizeof(t_room));
-	new->name = name;
+	new->name = ft_strdup(name);
 	new->next = NULL;
 	return (new);
 }

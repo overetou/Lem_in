@@ -13,7 +13,7 @@
 NAME	= lem-in
 
 CC		= gcc
-FLAGS	= -Wall -Wextra -Werror $(DFLAGS)
+FLAGS	= -Wall -Wextra -Werror #$(DFLAGS)
 DFLAGS	= -fsanitize=address
 
 SRC_BASE = \

@@ -86,14 +86,23 @@ void		start_end(t_env *e, char *line)
 
 	get_next_line(0, &l);
 	tab = ft_strsplit(l, ' ');
-	tmp = e->room;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = add_room(tab[0]);
-	if (ft_strcmp(line + 2, "start") == 0)
-		e->start = tmp->next;
+	if (!(e->room))
+	{
+		e->room = add_room(tab[0]);
+		tmp = e->room;
+	}
 	else
-		e->end = tmp->next;
+	{
+		tmp = e->room;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = add_room(tab[0]);
+		tmp = tmp->next;
+	}
+	if (ft_strcmp(line + 2, "start") == 0)
+		e->start = tmp;
+	else
+		e->end = tmp;
 	free(l);
 	ft_strsplitdel(tab);
 }
