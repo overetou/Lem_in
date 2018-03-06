@@ -58,10 +58,15 @@ void	store_room(t_env *e, char *line)
 	t_room	*tmp;
 
 	tab = ft_strsplit(line, ' ');
-	tmp = e->room;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = add_room(tab[0]);
+	if (!e->room)
+		e->room = add_room(tab[0]);
+	else
+	{
+		tmp = e->room;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = add_room(tab[0]);
+	}
 	ft_strsplitdel(tab);
 }
 

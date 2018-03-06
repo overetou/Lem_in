@@ -27,18 +27,13 @@ int store_mdr(t_env *e)
 
 	while (get_next_line(0, &line) > 0)
 	{
-		if (ft_strcmp(line, "##start") || ft_strcmp(line, "##end"))
-		{
+		if (ft_strcmp(line, "##start") == 0 || ft_strcmp(line, "##end") == 0)
 			start_end(e, line);
-			return (1);
-		}
-		else if (line[0] == '#')
-			store_cmt(e, line);
 		else if (check_room(line))
-			add_room(line);
+			store_room(e, line);
 		else if (check_link(e, line))
 			return (1);
-		else
+		else if (line[0] != '#')
 		{
 			free(line);
 			lem_exit(e);
@@ -54,6 +49,7 @@ void		lem_parse(t_env *e)
 {
 	store_ant(e);
 	store_mdr(e);
+	dsp_rooms(e->room);
 }
 
 void		lem_in(t_env *e)
