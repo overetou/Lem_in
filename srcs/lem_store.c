@@ -12,46 +12,6 @@
 
 #include <lem_in.h>
 
-void	add_link(t_room *room, char *name)
-{
-	t_data	*link;
-
-	link = room->link;
-	if (!link)
-	{
-		link = (t_data*)malloc(sizeof(t_data));
-		link->name = name;
-		link->next = NULL;
-	}
-	else
-	{
-		while (link->next)
-			link = link->next;
-		link->next = (t_data*)malloc(sizeof(t_data));
-		link->next->name = name;
-		link->next->next = NULL;
-	}
-}
-
-void	store_link(t_env *e, char *line)
-{
-	char	**tab;
-	char	*tmp;
-
-	tab = ft_strsplit(line, '-');
-	tmp = tab[0];
-	ft_strsplitdel(tab);
-	while (e->room)
-	{
-		if (ft_strcmp(e->room->name, tmp) == 0)
-		{
-			add_link(e->room, tmp);
-			//e->room->link->name = tmp;
-		}
-		e->room = e->room->next;
-	}
-}
-
 void	store_room(t_env *e, char *line)
 {
 	char	**tab;
@@ -68,19 +28,6 @@ void	store_room(t_env *e, char *line)
 		tmp->next = add_room(tab[0]);
 	}
 	ft_strsplitdel(tab);
-}
-
-void		store_cmt(t_env *e, char *line)
-{
-	t_data *tmp;
-
-	tmp = NULL;
-	tmp->next = e->cmt;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = (t_data*)malloc(sizeof(t_data));
-	tmp->name = ft_strdup(line);
-	tmp->next = NULL;
 }
 
 void		start_end(t_env *e, char *line)

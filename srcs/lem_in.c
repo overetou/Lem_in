@@ -49,6 +49,7 @@ void		lem_parse(t_env *e)
 {
 	store_ant(e);
 	store_mdr(e);
+	store_link(e);
 	dsp_rooms(e->room);
 }
 
