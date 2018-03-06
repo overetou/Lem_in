@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 14:52:19 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:57:15 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		lem_parse(t_env *e)
 		else if (ft_strcmp(line, "##end"))
 			store_end(e);
 		else if (line[0] == '#')
-			store_comment(e);
+			store_cmt(e);
 		else
 		{
 			free(line);
