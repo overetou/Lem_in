@@ -23,18 +23,16 @@ On cree un maillon dans la file contenant le pointeur start.
 
 resolution :
 
-Tant que le pointeur sur la file est non nul, on reitere ces actions :
+
+On descend la file en s'arretant a chacun des membres que l'on croise:
 {
-    On descend la file en s'arretant a chacun des membres que l'on croise:
-    {
-        pour chaque connexion de la salle :
-        {
-            si le compteur de la salle connectee est non initialisee
-            {compteur = compteur salle precedente + 1 && mettre pointeur de la salle connectee en debut de file)}
-            si la salle connectee est end, on renvoie 1.
-        }
-        on free la salle.
-    }
-}
+    pour chaque connexion de la salle :
+     {
+         si le compteur de la salle connectee est non initialisee
+         {compteur = compteur salle precedente + 1 && mettre pointeur de la salle connectee en fin de file)}
+         si la salle connectee est end, on renvoie 1.
+     }
+     on free la salle.
+ }
 
 Si on est arrive a la fin de cette boucle, la fourmiliere n'a aucun chemin de son debut a sa fin.

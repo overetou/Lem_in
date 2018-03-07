@@ -57,7 +57,6 @@ int store_mdr(t_env *e)
 	return (0);
 }
 
-
 void		lem_parse(t_env *e)
 {
 	store_ant(e);
@@ -69,8 +68,8 @@ void		lem_parse(t_env *e)
 void		lem_in(t_env *e)
 {
 	lem_parse(e);
-	//if (lem_path(e))
-	//	ft_putendl("Path : ok");
-	//else
-	//	ft_putendl("Path : ko");	
+	if (lem_path(e))
+		ft_putendl("Path : ok");
+	else
+		ft_putendl("Path : ko");	
 }
