@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/06 19:45:07 by overetou         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:24:44 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_data	*create_link(t_room *room, char *name)
 		link->next->name = name;
 		link->next->next = NULL;
 	}
+	return (room->link);
 }
 
 void    add_link(t_env *e, char *one)
@@ -47,7 +48,7 @@ void    add_link(t_env *e, char *one)
         tmp = tmp->next;
 }
 
-int	store_link(t_env *e)
+int		store_link(t_env *e)
 {
 	char	*line;
 

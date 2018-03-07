@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 17:18:43 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:24:04 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			store_link(t_env *e);
 void		lem_exit(t_env *e);
 t_room		*add_room(char *name);
 int			check_room(char *line);
-void		create_link(t_room *room, char *name);
+t_data		*create_link(t_room *room, char *name);
 int			check_link(t_env *e, char *line);
 int			store_mdr(t_env *e);
 void		dsp_rooms(t_room *r);

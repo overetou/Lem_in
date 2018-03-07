@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/06 17:21:45 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/07 14:23:36 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_BASE = \
 lem_in.c\
 lem_main.c\
 lem_store.c\
+lem_links.c\
 parse.c\
 checks.c\
 lem_exit.c

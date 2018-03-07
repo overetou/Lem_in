@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/06 17:24:26 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 15:41:37 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,20 @@ void		store_ant(t_env *e)
 {
 	char *line;
 
-	get_next_line(0, &line);
-	e->ant = ft_atoi(line);
-	free(line);
+	while (1)
+	{
+		if (get_next_line(0, &line) < 1)
+			lem_exit(e);
+		if (line[0] == '#')
+			store_cmt(e, line);
+		else
+		{
+			e->ant = ft_atoi(line);
+			free(line);
+			break ;
+		}
+		free(line);
+	}
+	if (!e->ant || e->ant < 0 || e->ant > 2147483647)
+		lem_exit(e);
 }
