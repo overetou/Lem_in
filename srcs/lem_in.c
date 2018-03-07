@@ -14,7 +14,7 @@
 
 void	dsp_rooms(t_room *r)
 {
-	t_data	*tmp;
+	t_link	*tmp;
 	while (r)
 	{
 		write(1, "----------\n", 11);
@@ -23,7 +23,7 @@ void	dsp_rooms(t_room *r)
 		ft_printf("Connected to : \n");
 		while (tmp)
 		{
-			ft_printf("-%s\n", tmp->name);
+			ft_printf("-%s\n", tmp->adress->name);
 			tmp = tmp->next;
 		}
 		write(1, "----------\n", 11);
@@ -69,4 +69,8 @@ void		lem_parse(t_env *e)
 void		lem_in(t_env *e)
 {
 	lem_parse(e);
+	//if (lem_path(e))
+	//	ft_putendl("Path : ok");
+	//else
+	//	ft_putendl("Path : ko");	
 }

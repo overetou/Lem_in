@@ -12,7 +12,7 @@
 
 #include <lem_in.h>
 
-int			find_room(char	*name, t_env *e)
+t_room			*find_room(char	*name, t_env *e)
 {
 	t_room *r;
 
@@ -20,10 +20,10 @@ int			find_room(char	*name, t_env *e)
 	while (r)
 	{
 		if (ft_strcmp(name, r->name) == 0)
-			return (1);
+			return (r);
 		r = r->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 int			check_link(t_env *e, char *line)

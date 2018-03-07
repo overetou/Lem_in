@@ -21,10 +21,17 @@ typedef struct	s_data
 	struct s_data 	*next;
 }				t_data;
 
+typedef struct	s_link
+{
+	struct s_room	*adress;
+	struct s_link 	*next;
+}				t_link;
+
 typedef struct	s_room
 {
 	char			*name;
-	t_data			*link;
+	t_link			*link;
+	int				count;
 	struct s_room	*next;
 }				t_room;
 
@@ -51,5 +58,6 @@ int			check_link(t_env *e, char *line);
 int			store_mdr(t_env *e);
 void		dsp_rooms(t_room *r);
 int			store_link(t_env *e);
+t_room		*find_room(char	*name, t_env *e);
 
 #endif

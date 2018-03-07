@@ -12,14 +12,14 @@
 
 #include <lem_in.h>
 
-void	create_link(t_room *room, char *name)
+void	create_link(t_room *room, t_room *adress)
 {
-	t_data	*link;
+	t_link	*link;
 
 	if (!(room->link))
 	{
-		room->link = (t_data*)malloc(sizeof(t_data));
-		(room->link)->name = ft_strdup(name);
+		room->link = (t_link*)malloc(sizeof(t_link));
+		(room->link)->adress = adress;
 		(room->link)->next = NULL;
 	}
 	else
@@ -27,29 +27,22 @@ void	create_link(t_room *room, char *name)
 		link = room->link;
 		while (link->next)
 			link = link->next;
-		link->next = (t_data*)malloc(sizeof(t_data));
-		link->next->name = ft_strdup(name);
+		link->next = (t_link*)malloc(sizeof(t_link));
+		link->next->adress = adress;
 		link->next->next = NULL;
 	}
 }
 
-void    add_link(t_env *e, char *one)
+void    add_link(t_env *e, char *line)
 {
 	char	**tab;
-    char    *two;
     t_room  *tmp;
 
-	tab = ft_strsplit(one, '-');
-    one = tab[0];
-    two = tab[1];
-    tmp = e->room;
-    while (tmp && ft_strcmp(tmp->name, one) != 0)
-        tmp = tmp->next;
-	create_link(tmp, two);
-	tmp = e->room;
-    while (tmp && ft_strcmp(tmp->name, two) != 0)
-        tmp = tmp->next;
-	create_link(tmp, one);
+	tab = ft_strsplit(line, '-');
+    tmp = find_room(tab[0], e);
+	create_link(tmp, find_room(tab[1], e));
+	tmp = find_room(tab[1], e);
+	create_link(tmp, find_room(tab[0], e));
 	ft_strsplitdel(tab);
 }
 

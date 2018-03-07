@@ -1,0 +1,40 @@
+
+--------------------------------------------------------------------------------------------------------
+Etat des choses au depart :
+
+On a une liste chainee principale rooms dont chaque maillon contient : 
+
+-son nom
+-un pointeur sur une liste chainee des adresses de toutes les salles connectees a la salle.
+-un int a usage de compteur, initialise a 0
+-son next, utlise pour son allocation et sa liberation, mais pas dans la resolution.
+
+Ainsi qu'une structure "file" encore inemployee dont chaque maillon contient :
+
+-un pointeur sur une salle.
+-Son next;
+
+Un pointeur Start qui pointe sur le maillon room duquel partent les fourmies.
+Un pointeur End qui pointe sur le maillon room ou doivent arriver les fourmies.
+---------------------------------------------------------------------------------------------------------
+Mesure prealable au lancement de la resolution :
+
+On cree un maillon dans la file contenant le pointeur start.
+
+resolution :
+
+Tant que le pointeur sur la file est non nul, on reitere ces actions :
+{
+    On descend la file en s'arretant a chacun des membres que l'on croise:
+    {
+        pour chaque connexion de la salle :
+        {
+            si le compteur de la salle connectee est non initialisee
+            {compteur = compteur salle precedente + 1 && mettre pointeur de la salle connectee en debut de file)}
+            si la salle connectee est end, on renvoie 1.
+        }
+        on free la salle.
+    }
+}
+
+Si on est arrive a la fin de cette boucle, la fourmiliere n'a aucun chemin de son debut a sa fin.

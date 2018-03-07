@@ -11,16 +11,7 @@
 /* ************************************************************************** */
 
 #include <lem_in.h>
-/*
-void	dsp_rooms(t_room *r)
-{
-	while (r)
-	{
-		ft_printf("Name = %s\n", r->name);
-		r = r->next;
-	}
-}
-*/
+
 t_room	*add_room(char *name)
 {
 	t_room *new;
@@ -29,6 +20,7 @@ t_room	*add_room(char *name)
 	new->name = ft_strdup(name);
 	new->link = NULL;
 	new->next = NULL;
+	new->count = 0;
 	return (new);
 }
 
