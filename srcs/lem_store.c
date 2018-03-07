@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 15:41:37 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 16:11:57 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		store_ant(t_env *e)
 		if (get_next_line(0, &line) < 1)
 			lem_exit(e);
 		if (line[0] == '#')
-			store_cmt(e, line);
+			lem_exit(e);
 		else
 		{
 			e->ant = ft_atoi(line);

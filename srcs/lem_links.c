@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/07 14:24:44 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 16:11:34 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	create_link(t_room *room, char *name)
 		link->next->name = ft_strdup(name);
 		link->next->next = NULL;
 	}
-	return (room->link);
 }
 
 void    add_link(t_env *e, char *one)
