@@ -6,11 +6,33 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 16:11:57 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:34:22 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
+
+void		store_ant(t_env *e)
+{
+	char *line;
+
+	while (1)
+	{
+		if (get_next_line(0, &line) < 1)
+			lem_exit(e);
+		if (line[0] == '#')
+			lem_exit(e);
+		else
+		{
+			e->ant = ft_atoi(line);
+			free(line);
+			break ;
+		}
+		free(line);
+	}
+	if (!e->ant || e->ant < 0 || e->ant > 2147483647)
+		lem_exit(e);
+}
 
 void	store_room(t_env *e, char *line)
 {
@@ -30,7 +52,7 @@ void	store_room(t_env *e, char *line)
 	ft_strsplitdel(tab);
 }
 
-void		start_end(t_env *e, char *line)
+void		store_startend(t_env *e, char *line)
 {
 	char	**tab;
 	char	*l;
@@ -57,26 +79,4 @@ void		start_end(t_env *e, char *line)
 		e->end = tmp;
 	free(l);
 	ft_strsplitdel(tab);
-}
-
-void		store_ant(t_env *e)
-{
-	char *line;
-
-	while (1)
-	{
-		if (get_next_line(0, &line) < 1)
-			lem_exit(e);
-		if (line[0] == '#')
-			lem_exit(e);
-		else
-		{
-			e->ant = ft_atoi(line);
-			free(line);
-			break ;
-		}
-		free(line);
-	}
-	if (!e->ant || e->ant < 0 || e->ant > 2147483647)
-		lem_exit(e);
 }

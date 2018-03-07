@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 20:12:16 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:25:53 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ typedef struct	s_room
 
 typedef struct	s_env
 {
+	int			ant;
 	t_room		*room;
 	t_data		*cmt;
 	t_room		*start;
 	t_room		*end;
-	int			ant;
 	char		*line;
 }				t_env;
 
@@ -55,11 +55,11 @@ void			lem_in(t_env *e);
 **				parse
 */
 
+void			lem_parse(t_env *e);
 void			store_ant(t_env *e);
-void			start_end(t_env *e, char *line);
+void			store_startend(t_env *e, char *line);
 void			store_room(t_env *e, char *line);
 int				store_link(t_env *e);
-int				store_mdr(t_env *e);
 
 /*
 **				check
@@ -71,10 +71,10 @@ t_room			*add_room(char *name);
 t_room			*find_room(char	*name, t_env *e);
 
 /*
-**				display
+**				print
 */
 
-void			dsp_rooms(t_room *r);
+void			print_room(t_room *r);
 
 /*
 **				exit

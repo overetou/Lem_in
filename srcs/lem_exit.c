@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:39 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 14:30:32 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:33:48 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void		lem_exit(t_env *e)
 {
-	(void)e;
-//	if (e->start)
-//		free(e->start);
-//	if (e->end)
-//		free(e->end);
+	if (e->line)
+		free(e->line);
 	ft_printf("ERROR\n");
 	exit (0);
 }

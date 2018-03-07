@@ -6,16 +6,16 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 19:56:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 19:57:01 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:20:19 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-t_room    *add_room(char *name)
+t_room			*add_room(char *name)
 {
     t_room *new;
-    
+
     new = (t_room*)malloc(sizeof(t_room));
     new->name = ft_strdup(name);
     new->link = NULL;
@@ -24,7 +24,7 @@ t_room    *add_room(char *name)
     return (new);
 }
 
-int        check_room(char *line)
+int				check_room(char *line)
 {
     char    **tab;
     int        i;
@@ -54,7 +54,7 @@ t_room			*find_room(char	*name, t_env *e)
 	return (NULL);
 }
 
-int			check_link(t_env *e, char *line)
+int				check_link(t_env *e, char *line)
 {
 	char	**tab;
 	int		x;

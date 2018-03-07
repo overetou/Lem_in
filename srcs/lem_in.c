@@ -6,13 +6,13 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 14:33:11 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:33:18 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-void	dsp_rooms(t_room *r)
+void		print_room(t_room *r)
 {
 	t_link	*tmp;
 	while (r)
@@ -31,46 +31,35 @@ void	dsp_rooms(t_room *r)
 	}
 }
 
-int store_mdr(t_env *e)
+void			lem_parse(t_env *e)
 {
 	char *line;
 
+	store_ant(e);
 	while (get_next_line(0, &line) > 0)
 	{
-		if (ft_strcmp(line, "##start") == 0 || ft_strcmp(line, "##end") == 0)
-			start_end(e, line);
+		if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
+			store_startend(e, line);
 		else if (check_room(line))
 			store_room(e, line);
 		else if (check_link(e, line))
 		{
-			e->line = line;
-			return (1);
+			e->line = ft_strdup(line);
+			free(line);
+			store_link(e);
+			return ;
 		}
-		else if (line[0] != '#')
+		else
 		{
 			free(line);
 			lem_exit(e);
-			return (0);
 		}
 		free(line);
 	}
-	return (0);
-}
-
-
-void		lem_parse(t_env *e)
-{
-	store_ant(e);
-	store_mdr(e);
-	store_link(e);
-	dsp_rooms(e->room);
 }
 
 void		lem_in(t_env *e)
 {
 	lem_parse(e);
-	//if (lem_path(e))
-	//	ft_putendl("Path : ok");
-	//else
-	//	ft_putendl("Path : ko");	
+	print_room(e->room);
 }
