@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 20:34:22 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:42:06 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		store_ant(t_env *e)
 		lem_exit(e);
 }
 
-void	store_room(t_env *e, char *line)
+void		store_room(t_env *e, char *line)
 {
 	char	**tab;
 	t_room	*tmp;

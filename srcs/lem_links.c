@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/07 16:11:34 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:41:08 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	create_link(t_room *room, t_room *adress)
 	}
 }
 
-void    add_link(t_env *e, char *line)
+void	add_link(t_env *e, char *line)
 {
 	char	**tab;
-    t_room  *tmp;
+	t_room	*tmp;
 
 	tab = ft_strsplit(line, '-');
-    tmp = find_room(tab[0], e);
+	tmp = find_room(tab[0], e);
 	create_link(tmp, find_room(tab[1], e));
 	tmp = find_room(tab[1], e);
 	create_link(tmp, find_room(tab[0], e));
@@ -57,7 +57,7 @@ int		store_link(t_env *e)
 			add_link(e, line);
 		else if (line[0] != '#')
 			return (0);
-        free(line);
+		free(line);
 	}
 	return (1);
 }

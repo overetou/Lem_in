@@ -6,15 +6,16 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 20:33:18 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/07 20:41:56 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-void		print_room(t_room *r)
+void			print_room(t_room *r)
 {
 	t_link	*tmp;
+
 	while (r)
 	{
 		write(1, "----------\n", 11);
@@ -58,7 +59,7 @@ void			lem_parse(t_env *e)
 	}
 }
 
-void		lem_in(t_env *e)
+void			lem_in(t_env *e)
 {
 	lem_parse(e);
 	print_room(e->room);
