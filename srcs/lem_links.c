@@ -12,23 +12,23 @@
 
 #include <lem_in.h>
 
-t_data	*create_link(t_room *room, char *name)
+void	create_link(t_room *room, char *name)
 {
 	t_data	*link;
 
-	link = room->link;
-	if (!link)
+	if (!(room->link))
 	{
-		link = (t_data*)malloc(sizeof(t_data));
-		link->name = name;
-		link->next = NULL;
+		room->link = (t_data*)malloc(sizeof(t_data));
+		(room->link)->name = ft_strdup(name);
+		(room->link)->next = NULL;
 	}
 	else
 	{
+		link = room->link;
 		while (link->next)
 			link = link->next;
 		link->next = (t_data*)malloc(sizeof(t_data));
-		link->next->name = name;
+		link->next->name = ft_strdup(name);
 		link->next->next = NULL;
 	}
 	return (room->link);
@@ -40,18 +40,25 @@ void    add_link(t_env *e, char *one)
     char    *two;
     t_room  *tmp;
 
-    tab = ft_strsplit(one, '-');
+	tab = ft_strsplit(one, '-');
     one = tab[0];
     two = tab[1];
     tmp = e->room;
-    while (tmp && ft_strcmp(tmp->name, one) == 0)
+    while (tmp && ft_strcmp(tmp->name, one) != 0)
         tmp = tmp->next;
+	create_link(tmp, two);
+	tmp = e->room;
+    while (tmp && ft_strcmp(tmp->name, two) != 0)
+        tmp = tmp->next;
+	create_link(tmp, one);
+	ft_strsplitdel(tab);
 }
 
 int		store_link(t_env *e)
 {
 	char	*line;
 
+	add_link(e, e->line);
 	while (get_next_line(0, &line))
 	{
 		if (check_link(e, line))

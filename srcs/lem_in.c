@@ -14,9 +14,19 @@
 
 void	dsp_rooms(t_room *r)
 {
+	t_data	*tmp;
 	while (r)
 	{
-		ft_printf("Name = %s\n----------------\n", r->name);
+		write(1, "----------\n", 11);
+		ft_printf("Name = %s\n\n", r->name);
+		tmp = r->link;
+		ft_printf("Connected to : \n");
+		while (tmp)
+		{
+			ft_printf("-%s\n", tmp->name);
+			tmp = tmp->next;
+		}
+		write(1, "----------\n", 11);
 		r = r->next;
 	}
 }
@@ -32,7 +42,10 @@ int store_mdr(t_env *e)
 		else if (check_room(line))
 			store_room(e, line);
 		else if (check_link(e, line))
+		{
+			e->line = line;
 			return (1);
+		}
 		else if (line[0] != '#')
 		{
 			free(line);

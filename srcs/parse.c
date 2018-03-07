@@ -27,6 +27,7 @@ t_room	*add_room(char *name)
 	
 	new = (t_room*)malloc(sizeof(t_room));
 	new->name = ft_strdup(name);
+	new->link = NULL;
 	new->next = NULL;
 	return (new);
 }
