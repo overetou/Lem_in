@@ -31,11 +31,11 @@ typedef struct	s_room
 typedef struct		s_env
 {
 	t_room	*room;
-	t_data	*link;
 	t_data	*cmt;
 	int		ant;
 	t_room	*start;
 	t_room	*end;
+	char	*line;
 }					t_env;
 
 void		lem_in(t_env *e);
@@ -47,9 +47,9 @@ int			store_link(t_env *e);
 void		lem_exit(t_env *e);
 t_room		*add_room(char *name);
 int			check_room(char *line);
-void		create_link(t_room *room, char *name);
 int			check_link(t_env *e, char *line);
 int			store_mdr(t_env *e);
 void		dsp_rooms(t_room *r);
+int			store_link(t_env *e);
 
 #endif
