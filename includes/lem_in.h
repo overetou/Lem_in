@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 20:25:53 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 15:17:16 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct	s_env
 {
 	int			ant;
 	t_room		*room;
-	t_data		*cmt;
 	t_room		*start;
 	t_room		*end;
+	t_data		*map;
 	char		*line;
 }				t_env;
 
@@ -60,6 +60,7 @@ void			store_ant(t_env *e);
 void			store_startend(t_env *e, char *line);
 void			store_room(t_env *e, char *line);
 int				store_link(t_env *e);
+void			store_map(t_data **map, char *line);
 
 /*
 **				check

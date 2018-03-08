@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/07 20:42:06 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 15:21:02 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,22 @@ void		store_ant(t_env *e)
 {
 	char *line;
 
-	while (1)
+	line = NULL;
+	while (get_next_line(0, &line) > 0)
 	{
-		if (get_next_line(0, &line) < 1)
-			lem_exit(e);
 		if (line[0] == '#')
-			lem_exit(e);
-		else
 		{
-			e->ant = ft_atoi(line);
+			store_map(&e->map, line);
 			free(line);
-			break ;
 		}
-		free(line);
+		else
+			break ;
 	}
-	if (!e->ant || e->ant < 0 || e->ant > 2147483647)
+	if (line == NULL)
+		lem_exit(e);
+	e->ant = ft_atoi(line);
+	free(line);
+	if (e->ant <= 0 || e->ant > INT_MAX)
 		lem_exit(e);
 }
 
@@ -79,4 +80,28 @@ void		store_startend(t_env *e, char *line)
 		e->end = tmp;
 	free(l);
 	ft_strsplitdel(tab);
+}
+
+void		store_map(t_data **map, char *line)
+{
+	t_data	*new;
+	t_data	*tmp;
+
+	new = ft_memalloc(sizeof(t_data));
+	new->name = ft_strdup(line);
+	tmp = *map;
+	if (!tmp)
+	{
+		*map = new;
+		return ;
+	}
+	while (tmp)
+	{
+		if (!tmp->next)
+		{
+			tmp->next = new;
+			return ;
+		}
+		tmp = tmp->next;
+	}
 }
