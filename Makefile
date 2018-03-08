@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/08 18:45:34 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/08 21:15:25 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ lem_store.c\
 lem_check.c\
 lem_print.c\
 lem_exit.c \
+lem_pass.c \
+lem_path.c \
 lem_link.c
 
 INC_BASE = lem_in.h

@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 19:30:04 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 21:23:23 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void			lem_in(t_env *e)
 	lem_parse(e);
 	if (!e->start || !e->end)
 		lem_exit(e, "no ##start or ##end");
-	print_map(e->map);
-	print_room(e->room);
+	if (lem_path(e))
+	{
+		print_map(e->map);
+		view_ants_moves(get_path(e), e);
+	}
 }

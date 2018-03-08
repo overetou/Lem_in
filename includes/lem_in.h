@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 19:27:09 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 21:28:36 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ typedef struct	s_link
 	struct s_room	*adress;
 	struct s_link	*next;
 }				t_link;
+
+typedef	struct	s_path
+{
+	char			*name;
+	int				a_name;
+	int				ant;
+	struct s_path	*next;
+}				t_path;
 
 typedef struct	s_room
 {
@@ -73,16 +81,26 @@ t_room			*add_room(char *name);
 t_room			*find_room(char	*name, t_env *e);
 
 /*
+**				path
+*/
+
+int    	 		lem_path(t_env *e);
+t_path			*get_path(t_env *e);
+void			view_ants_moves(t_path *p, t_env *e);
+
+/*
 **				print
 */
 
 void			print_map(t_data *map);
-void			print_room(t_room *r);
+void			print_ants(t_path *p);
 
 /*
 **				exit
 */
 
 void			lem_exit(t_env *e, char *msg);
+
+//void			print_room(t_room *r);
 
 #endif
