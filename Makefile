@@ -6,7 +6,7 @@
 #    By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 15:33:20 by kenguyen          #+#    #+#              #
-#    Updated: 2018/03/08 21:15:25 by kenguyen         ###   ########.fr        #
+#    Updated: 2018/03/08 22:00:46 by kenguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ DFLAGS	= -fsanitize=address
 
 SRC_BASE = \
 lem_in.c\
-lem_main.c\
 lem_store.c\
 lem_check.c\
 lem_print.c\

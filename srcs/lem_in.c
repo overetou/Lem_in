@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 21:23:23 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 22:03:50 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,7 @@ void			lem_parse(t_env *e)
 		else if (ft_strchr(line, ' '))
 			store_room(e, ft_strsplit(line, ' '));
 		else if (ft_strchr(line, '-'))
-		{
-			e->line = ft_strdup(line);
-			free(line);
-			store_link(e);
-			return ;
-		}
+			store_link(e, ft_strsplit(line, '-'));
 		else
 		{
 			free(line);
@@ -49,9 +44,17 @@ void			lem_in(t_env *e)
 	lem_parse(e);
 	if (!e->start || !e->end)
 		lem_exit(e, "no ##start or ##end");
-	if (lem_path(e))
-	{
-		print_map(e->map);
-		view_ants_moves(get_path(e), e);
-	}
+	if (!lem_path(e))
+		lem_exit(e, "no path");
+	print_map(e->map);
+	view_ants_moves(get_path(e), e);
+}
+
+int			main(void)
+{
+	t_env	e;
+
+	ft_bzero(&e, (sizeof(e)));
+	lem_in(&e);
+	return (0);
 }

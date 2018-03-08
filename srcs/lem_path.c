@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 21:12:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 21:15:55 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 22:14:48 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	add_queue_link(t_room *r, t_link **last)
 {
-    (*last)->next = (t_link*)malloc(sizeof(t_link));
-    (*last) = (*last)->next;
-    (*last)->adress =r;
+	(*last)->next = (t_link*)malloc(sizeof(t_link));
+	(*last) = (*last)->next;
+	(*last)->adress =r;
 }
 
 int		process_connections(t_room *r, t_link **last, t_env *e)
 {
-    t_link  *tmp;
+	t_link  *tmp;
 
-    tmp = r->link;
-    while (tmp)
-    {
+	tmp = r->link;
+	while (tmp)
+	{
         if (tmp->adress->count == 0)
         {
            tmp->adress->count = r->count + 1;

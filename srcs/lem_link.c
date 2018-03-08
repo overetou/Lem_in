@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/08 18:43:56 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 22:12:00 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	create_link(t_room *room, t_room *adress)
 	}
 }
 
-void	add_link(t_env *e, char *line)
+void	add_link(t_env *e, char **tab)
 {
-	char	**tab;
 	t_room	*tmp;
 
-	tab = ft_strsplit(line, '-');
 	tmp = find_room(tab[0], e);
 	create_link(tmp, find_room(tab[1], e));
 	tmp = find_room(tab[1], e);
@@ -46,19 +44,24 @@ void	add_link(t_env *e, char *line)
 	ft_strsplitdel(tab);
 }
 
-int		store_link(t_env *e)
+void		store_link(t_env *e, char **tab)
 {
 	char	*line;
+	int		x;
 
-	add_link(e, e->line);
+	x = 0;
+	while (tab[x])
+		x++;
+	if (!(x == 2 && find_room(tab[0], e) && find_room(tab[1], e)))
+		lem_exit(e, "error parse store");
+	add_link(e, tab);
 	while (get_next_line(0, &line))
 	{
 		if (check_link(e, line))
-			add_link(e, line);
+			add_link(e, ft_strsplit(line, '-'));
 		else if (line[0] != '#')
-			return (0);
+			return ;
 		store_map(&e->map ,line);
 		free(line);
 	}
-	return (1);
 }
