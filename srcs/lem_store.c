@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 15:21:02 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 18:28:54 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,23 @@ void		store_ant(t_env *e)
 	if (line == NULL)
 		lem_exit(e);
 	e->ant = ft_atoi(line);
+	store_map(&e->map, line);
 	free(line);
-	if (e->ant <= 0 || e->ant > INT_MAX)
+	if (e->ant <= 0)
 		lem_exit(e);
 }
 
-void		store_room(t_env *e, char *line)
+void		store_room(t_env *e, char **tab)
 {
-	char	**tab;
 	t_room	*tmp;
 
-	tab = ft_strsplit(line, ' ');
+	if (!tab[1] || !tab[2] || tab[3] || tab[0][0] == 'L' 
+	|| e->room->link || tab[0][0] == '#' || !ft_str_is_numeric(tab[1])
+	|| !ft_str_is_numeric(tab[2]))
+	{
+		ft_strsplitdel(tab);
+		lem_exit(e);
+	}
 	if (!e->room)
 		e->room = add_room(tab[0]);
 	else
@@ -53,14 +59,9 @@ void		store_room(t_env *e, char *line)
 	ft_strsplitdel(tab);
 }
 
-void		store_startend(t_env *e, char *line)
+void		add_start(t_env *e, char **tab)
 {
-	char	**tab;
-	char	*l;
 	t_room	*tmp;
-
-	get_next_line(0, &l);
-	tab = ft_strsplit(l, ' ');
 	if (!(e->room))
 	{
 		e->room = add_room(tab[0]);
@@ -74,12 +75,66 @@ void		store_startend(t_env *e, char *line)
 		tmp->next = add_room(tab[0]);
 		tmp = tmp->next;
 	}
-	if (ft_strcmp(line + 2, "start") == 0)
-		e->start = tmp;
-	else
-		e->end = tmp;
-	free(l);
+	e->start = tmp;
 	ft_strsplitdel(tab);
+}
+
+void		add_end(t_env *e, char **tab)
+{
+	t_room	*tmp;
+	if (!(e->room))
+	{
+		e->room = add_room(tab[0]);
+		tmp = e->room;
+	}
+	else
+	{
+		tmp = e->room;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = add_room(tab[0]);
+		tmp = tmp->next;
+	}
+	e->end = tmp;
+	ft_strsplitdel(tab);
+}
+
+void		store_start(t_env *e)
+{
+	char	*line;
+
+	while (get_next_line(0, &line) > 0)
+	{
+		if (line[0] == '#')
+		{
+			store_map(&e->map, line);
+			free(line);
+		}
+		else
+			break ;
+	}
+	add_start(e, ft_strsplit(line, ' '));
+	store_map(&e->map, line);
+	free(line);
+}
+
+void		store_end(t_env *e)
+{
+	char	*line;
+
+	while (get_next_line(0, &line) > 0)
+	{
+		if (line[0] == '#')
+		{
+			store_map(&e->map, line);
+			free(line);
+		}
+		else
+			break ;
+	}
+	add_end(e, ft_strsplit(line, ' '));
+	store_map(&e->map, line);
+	free(line);
 }
 
 void		store_map(t_data **map, char *line)

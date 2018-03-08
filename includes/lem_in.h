@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 15:17:16 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 18:25:42 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,18 @@ void			lem_in(t_env *e);
 
 void			lem_parse(t_env *e);
 void			store_ant(t_env *e);
-void			store_startend(t_env *e, char *line);
-void			store_room(t_env *e, char *line);
+void			store_room(t_env *e, char **tab);
 int				store_link(t_env *e);
 void			store_map(t_data **map, char *line);
+void			store_start(t_env *e);
+void			store_end(t_env *e);
+void			add_start(t_env *e, char **tab);
+void			add_end(t_env *e, char **tab);
 
 /*
 **				check
 */
 
-int				check_room(char *line);
 int				check_link(t_env *e, char *line);
 t_room			*add_room(char *name);
 t_room			*find_room(char	*name, t_env *e);
@@ -75,6 +77,7 @@ t_room			*find_room(char	*name, t_env *e);
 **				print
 */
 
+void			print_map(t_data *map);
 void			print_room(t_room *r);
 
 /*
