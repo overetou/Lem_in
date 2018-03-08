@@ -27,6 +27,13 @@ typedef struct	s_link
 	struct s_link 	*next;
 }				t_link;
 
+typedef	struct	s_path
+{
+	char			*name;
+	int				ant;
+	struct s_path	*next;
+}				t_path;
+
 typedef struct	s_room
 {
 	char			*name;
@@ -59,5 +66,7 @@ int			store_mdr(t_env *e);
 void		dsp_rooms(t_room *r);
 int			store_link(t_env *e);
 t_room		*find_room(char	*name, t_env *e);
+int     	lem_path(t_env *e);
+t_path		*get_path(t_env *e);
 
 #endif

@@ -12,6 +12,17 @@
 
 #include <lem_in.h>
 
+void	dsp_path(t_path *p)
+{
+	ft_putstr("Path : ");
+	while (p->next)
+	{
+		ft_printf ("%s -> ", p->name);
+		p = p->next;
+	}
+	ft_putendl(p->name);
+}
+
 void	dsp_rooms(t_room *r)
 {
 	t_link	*tmp;
@@ -19,6 +30,7 @@ void	dsp_rooms(t_room *r)
 	{
 		write(1, "----------\n", 11);
 		ft_printf("Name = %s\n\n", r->name);
+		ft_printf("Path value = %d\n", r->count);
 		tmp = r->link;
 		ft_printf("Connected to : \n");
 		while (tmp)
@@ -62,14 +74,18 @@ void		lem_parse(t_env *e)
 	store_ant(e);
 	store_mdr(e);
 	store_link(e);
-	dsp_rooms(e->room);
 }
 
 void		lem_in(t_env *e)
 {
+	t_path	*p;
+
 	lem_parse(e);
 	if (lem_path(e))
-		ft_putendl("Path : ok");
-	else
-		ft_putendl("Path : ko");	
+	{
+		p = get_path(e);
+		dsp_path(p);
+	}
+	//send_ants(p);	
+	//dsp_rooms(e->room);		
 }
