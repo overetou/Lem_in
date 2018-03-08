@@ -6,16 +6,16 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:39 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 14:22:34 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/08 19:15:45 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-void		lem_exit(t_env *e)
+void		lem_exit(t_env *e, char *msg)
 {
-	if (e->line)
-		free(e->line);
-	ft_printf("ERROR\n");
+	print_map(e->map);
+	if (msg)
+		ft_printf("%s\n", msg);
 	exit(0);
 }
