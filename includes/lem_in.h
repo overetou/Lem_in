@@ -30,6 +30,7 @@ typedef struct	s_link
 typedef	struct	s_path
 {
 	char			*name;
+	int				a_name;
 	int				ant;
 	struct s_path	*next;
 }				t_path;
@@ -68,5 +69,6 @@ int			store_link(t_env *e);
 t_room		*find_room(char	*name, t_env *e);
 int     	lem_path(t_env *e);
 t_path		*get_path(t_env *e);
+void    view_ants_moves(t_path *p, t_env *e);
 
 #endif

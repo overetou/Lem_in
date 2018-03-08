@@ -17,7 +17,7 @@ void	dsp_path(t_path *p)
 	ft_putstr("Path : ");
 	while (p->next)
 	{
-		ft_printf ("%s -> ", p->name);
+		ft_printf ("%s <- ", p->name);
 		p = p->next;
 	}
 	ft_putendl(p->name);
@@ -84,8 +84,8 @@ void		lem_in(t_env *e)
 	if (lem_path(e))
 	{
 		p = get_path(e);
-		dsp_path(p);
+		//dsp_path(p);
+		view_ants_moves(p, e);	
 	}
-	//send_ants(p);	
 	//dsp_rooms(e->room);		
 }

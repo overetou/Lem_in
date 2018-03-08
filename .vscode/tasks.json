@@ -6,7 +6,7 @@
         {
             "label": "Build and run lem in with simple map 2",
             "type": "shell",
-            "command": "echo make\n./lem-in < maps/simple2"
+            "command": "echo make"
         }
     ]
 }

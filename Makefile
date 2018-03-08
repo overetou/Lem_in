@@ -24,7 +24,8 @@ parse.c\
 checks.c\
 lem_exit.c \
 lem_links.c \
-lem_path.c
+lem_path.c \
+lem_pass.c
 
 INC_BASE = lem_in.h
 

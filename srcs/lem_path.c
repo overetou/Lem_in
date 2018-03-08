@@ -84,17 +84,16 @@ t_path	*get_path(t_env *e)
 	t_path	*tmp;
 
 	r = e->end;
-	tmp = create_p_node(r->name, 0);
-	tmp->next = NULL;
+	p = create_p_node(r->name, 0);
+    tmp = p;
 	while (r->count != 2)
 	{
 		r = find_next_room(r->link, (r->count) - 1);
-		p = create_p_node(r->name, 0);
-		p->next = tmp;
-		tmp = p;
+		tmp->next = create_p_node(r->name, 0);
+		tmp = tmp->next;
 	}
 	r = find_next_room(r->link, (r->count) - 1);
-	p = create_p_node(r->name, e->ant);
-	p->next = tmp;
+	tmp->next = create_p_node(r->name, e->ant);
+    tmp->next->next = NULL;
 	return (p);
 }
