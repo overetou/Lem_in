@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 22:03:50 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:17:43 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			lem_in(t_env *e)
 	view_ants_moves(get_path(e), e);
 }
 
-int			main(void)
+int				main(void)
 {
 	t_env	e;
 

@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 19:28:24 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:15:18 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		store_room(t_env *e, char **tab)
 {
 	t_room	*tmp;
 
-	if (!tab[1] || !tab[2] || tab[3] || tab[0][0] == 'L' 
+	if (!tab[1] || !tab[2] || tab[3] || tab[0][0] == 'L'
 	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2]))
 	{
 		ft_strsplitdel(tab);
@@ -75,7 +75,10 @@ void		add_start_end(t_env *e, char **tab, char *str)
 		tmp->next = add_room(tab[0]);
 		tmp = tmp->next;
 	}
-	(!ft_strcmp(str, "##start")) ? (e->start = tmp) : (e->end = tmp);
+	if (!ft_strcmp(str, "##start"))
+		e->start = tmp;
+	else
+		e->end = tmp;
 	ft_strsplitdel(tab);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 21:12:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 22:14:48 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:13:52 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,37 @@ int		process_connections(t_room *r, t_link **last, t_env *e)
 	tmp = r->link;
 	while (tmp)
 	{
-        if (tmp->adress->count == 0)
-        {
-           tmp->adress->count = r->count + 1;
-           if (tmp->adress == e->end)
-                return (1);
-           add_queue_link(tmp->adress, last);
-        }
-        tmp = tmp->next;
-    }
-    return (0);
+		if (tmp->adress->count == 0)
+		{
+			tmp->adress->count = r->count + 1;
+			if (tmp->adress == e->end)
+				return (1);
+			add_queue_link(tmp->adress, last);
+		}
+	tmp = tmp->next;
+	}
+	return (0);
 }
 
 int		lem_path(t_env *e)
 {
-    t_link  *queue;
-    t_link  *tmp;
-    t_link  *last;
+	t_link  *queue;
+	t_link  *tmp;
+	t_link  *last;
 
-    e->start->count = 1;
-    queue = (t_link*)malloc(sizeof(t_link));
-    queue->adress = e->start;
-    tmp = queue;
-    last = queue;
-    while(tmp)
-    {
-        if (process_connections(tmp->adress, &last, e))
-            return (1);
-        tmp = tmp->next;
-    }
-    //del_queue(queue);
-    return (0);
+	e->start->count = 1;
+	queue = (t_link*)malloc(sizeof(t_link));
+	queue->adress = e->start;
+	tmp = queue;
+	last = queue;
+	while (tmp)
+	{
+		if (process_connections(tmp->adress, &last, e))
+			return (1);
+		tmp = tmp->next;
+	}
+	//del_queue(queue);
+	return (0);
 }
 //----------------------------------------------------------------------------
 

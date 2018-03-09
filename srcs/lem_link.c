@@ -6,13 +6,13 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/08 22:12:00 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:17:58 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-void	create_link(t_room *room, t_room *adress)
+void		create_link(t_room *room, t_room *adress)
 {
 	t_link	*link;
 
@@ -33,7 +33,7 @@ void	create_link(t_room *room, t_room *adress)
 	}
 }
 
-void	add_link(t_env *e, char **tab)
+void		add_link(t_env *e, char **tab)
 {
 	t_room	*tmp;
 
@@ -46,22 +46,7 @@ void	add_link(t_env *e, char **tab)
 
 void		store_link(t_env *e, char **tab)
 {
-	char	*line;
-	int		x;
-
-	x = 0;
-	while (tab[x])
-		x++;
-	if (!(x == 2 && find_room(tab[0], e) && find_room(tab[1], e)))
+	if (!(!tab[2] && find_room(tab[0], e) && find_room(tab[1], e)))
 		lem_exit(e, "error parse store");
 	add_link(e, tab);
-	while (get_next_line(0, &line))
-	{
-		if (check_link(e, line))
-			add_link(e, ft_strsplit(line, '-'));
-		else if (line[0] != '#')
-			return ;
-		store_map(&e->map ,line);
-		free(line);
-	}
 }

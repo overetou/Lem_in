@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 16:21:49 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/08 21:27:05 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:18:50 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			print_ants(t_path *p)
 		{
 			ft_printf("L%d-%s", p->a_name, p->name);
 			p = p->next;
-			break;
+			break ;
 		}
 		p = p->next;
 	}
@@ -43,13 +43,12 @@ void			print_ants(t_path *p)
 	ft_printf("\n");
 }
 
-/*
-void			dsp_path(t_path *p)
+void			print_path(t_path *p)
 {
 	ft_putstr("Path : ");
 	while (p->next)
 	{
-		ft_printf ("%s <- ", p->name);
+		ft_printf("%s <- ", p->name);
 		p = p->next;
 	}
 	ft_putendl(p->name);
@@ -74,4 +73,3 @@ void			print_room(t_room *r)
 		r = r->next;
 	}
 }
-*/
