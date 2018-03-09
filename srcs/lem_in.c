@@ -44,7 +44,7 @@ void			lem_in(t_env *e)
 	lem_parse(e);
 	if (!e->start || !e->end)
 		lem_exit(e, "no ##start or ##end");
-	if (!lem_path(e))
+	if (!(e->start->link) || !lem_path(e))
 		lem_exit(e, "no path");
 	print_map(e->map);
 	view_ants_moves(get_path(e), e);
