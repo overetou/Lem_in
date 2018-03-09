@@ -16,7 +16,8 @@ void	add_queue_link(t_room *r, t_link **last)
 {
 	(*last)->next = (t_link*)malloc(sizeof(t_link));
 	(*last) = (*last)->next;
-	(*last)->adress =r;
+	(*last)->adress = r;
+	(*last)->next = NULL;
 }
 
 int		process_connections(t_room *r, t_link **last, t_env *e)
@@ -43,14 +44,16 @@ int		lem_path(t_env *e)
 	t_link  *queue;
 	t_link  *tmp;
 	t_link  *last;
+	int x = 0;
 
 	e->start->count = 1;
 	queue = (t_link*)malloc(sizeof(t_link));
 	queue->adress = e->start;
 	tmp = queue;
 	last = queue;
-	while (tmp)
+	while (tmp && x++ != 10)
 	{
+		printf("%s\n", tmp->adress->name);
 		if (process_connections(tmp->adress, &last, e))
 			return (1);
 		tmp = tmp->next;

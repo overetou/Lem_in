@@ -12,6 +12,19 @@
 
 #include <lem_in.h>
 
+void			print_help(t_env *e)
+{
+	ft_printf("\nA correct map contains 3 parts, in ");
+	ft_printf("the given order :\n\t[ant number]\n\t[rooms]\n\t[links]\n\n");
+	ft_printf("Room field pattern :\n\t\"name coord(x) coord(y)\"\ntube field");
+	ft_printf(" pattern :\n\tname(1)-name(2)\nThe starting point must be ");
+	ft_printf("preceded by ##start and the ending point by ##end.\n\n");
+	ft_printf("Example :\n5\n##start\nstart 0 0\nmidway 0 1\n##end\n");
+	ft_printf("end 0 2\nstart-midway\nmidway-end\n\nlines preceded by");
+	ft_printf(" a single # may be placed anywhere in the map.\n");
+	lem_exit(e, NULL);
+}
+
 void			lem_parse(t_env *e)
 {
 	char *line;
@@ -64,6 +77,8 @@ void			get_arg(int argc, char **argv, t_env *e)
 				e->color = 1;
 				return ;
 			}
+			else if (ft_strcmp(argv[i], "-h") == 0)
+				print_help(e);
 			i++;
 		}
 		lem_exit(e, "invalid argument");

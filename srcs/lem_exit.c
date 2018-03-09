@@ -32,5 +32,6 @@ void		lem_exit(t_env *e, char *msg)
 		destroy_data(e->cmt);
 	if (msg)
 		ft_printf("%s\n", msg);
+	ft_putstr("Usage : ./lem-in [map] -[param]\nparams : -color, -h\n");
 	exit(0);
 }
