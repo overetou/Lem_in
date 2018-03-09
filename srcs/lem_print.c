@@ -16,19 +16,39 @@ void			print_map(t_data *map)
 {
 	while (map)
 	{
-		ft_printf("%s\n", map->name);
+		if ((map->name)[0] == '#')
+		{
+			if ((map->name)[1] == '#')
+				write(1, "\033[01;34m", 8);
+			else
+				write(1, "\033[22;34m", 8);
+			ft_printf("%s\n", map->name);
+		}
+		else
+		{
+			write(1, "\033[01;35m", 8);
+			ft_printf("%s\n", map->name);
+		}
+		write(1, "\033[0m", 4);
 		map = map->next;
 	}
 	ft_printf("\n");
 }
 
-void			print_ants(t_path *p)
+void			print_ants(t_path *pth)
 {
+	t_path	*p;
+
+	p = pth;
 	while (p->next)
 	{
 		if (p->ant)
 		{
-			ft_printf("L%d-%s", p->a_name, p->name);
+			ft_printf("\033[01;35mL%d", p->a_name);
+			if (p == pth)
+				ft_printf("\033[22;32m-%s\033[0m", p->name);
+			else
+				ft_printf("\033[01;34m-%s\033[0m", p->name);
 			p = p->next;
 			break ;
 		}
@@ -37,7 +57,7 @@ void			print_ants(t_path *p)
 	while (p->next)
 	{
 		if (p->ant)
-			ft_printf(" L%d-%s", p->a_name, p->name);
+			ft_printf(" \033[01;35mL%d\033[01;34m-%s\033[0m", p->a_name, p->name);
 		p = p->next;
 	}
 	ft_printf("\n");
