@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/09 14:19:25 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:25:08 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void			add_start_end(t_env *e, char **tab, char *str);
 **				check
 */
 
-int				check_link(t_env *e, char *line);
 t_room			*add_room(char *name);
 t_room			*find_room(char	*name, t_env *e);
 
