@@ -51,6 +51,7 @@ typedef struct	s_env
 	t_room		*end;
 	t_data		*map;
 	t_data		*cmt;
+	int			color;
 }				t_env;
 
 /*
@@ -91,7 +92,8 @@ void			view_ants_moves(t_path *p, t_env *e);
 */
 
 void			print_map(t_data *map);
-void			print_ants(t_path *p);
+void			print_ants(t_path *p, t_env *e);
+void			print_map_color(t_data *map);
 
 /*
 **				exit

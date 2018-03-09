@@ -12,7 +12,7 @@
 
 #include <lem_in.h>
 
-void			print_map(t_data *map)
+void	print_map_color(t_data *map)
 {
 	while (map)
 	{
@@ -35,7 +35,31 @@ void			print_map(t_data *map)
 	ft_printf("\n");
 }
 
-void			print_ants(t_path *pth)
+void	print_map(t_data *map)
+{
+	while (map)
+	{
+		ft_printf("%s\n", map->name);
+		map = map->next;
+	}
+	ft_printf("\n");
+}
+
+void	print_first(t_path *p, t_path *pth, t_env *e)
+{
+	if (e->color)
+	{
+		ft_printf("\033[01;35mL%d", p->a_name);
+		if (p == pth)
+			ft_printf("\033[22;32m-%s\033[0m", p->name);
+		else
+			ft_printf("\033[01;34m-%s\033[0m", p->name);
+	}
+	else
+		ft_printf("L%d-%s", p->a_name, p->name);
+}
+
+void	print_ants(t_path *pth, t_env *e)
 {
 	t_path	*p;
 
@@ -44,11 +68,7 @@ void			print_ants(t_path *pth)
 	{
 		if (p->ant)
 		{
-			ft_printf("\033[01;35mL%d", p->a_name);
-			if (p == pth)
-				ft_printf("\033[22;32m-%s\033[0m", p->name);
-			else
-				ft_printf("\033[01;34m-%s\033[0m", p->name);
+			print_first(p, pth, e);
 			p = p->next;
 			break ;
 		}
@@ -57,24 +77,29 @@ void			print_ants(t_path *pth)
 	while (p->next)
 	{
 		if (p->ant)
-			ft_printf(" \033[01;35mL%d\033[01;34m-%s\033[0m", p->a_name, p->name);
+		{
+			if (e->color)
+				ft_printf(" \033[01;35mL%d\033[01;34m-%s\033[0m", p->a_name, p->name);
+			else
+				ft_printf(" L%d-%s", p->a_name, p->name);
+		}
 		p = p->next;
 	}
 	ft_printf("\n");
 }
 
-void			print_path(t_path *p)
-{
-	ft_putstr("Path : ");
-	while (p->next)
-	{
-		ft_printf("%s <- ", p->name);
-		p = p->next;
-	}
-	ft_putendl(p->name);
-}
+//void			print_path(t_path *p)
+//{
+//	ft_putstr("Path : ");
+//	while (p->next)
+//	{
+//		ft_printf("%s <- ", p->name);
+//		p = p->next;
+//	}
+//	ft_putendl(p->name);
+//}
 
-void			print_room(t_room *r)
+void	print_room(t_room *r)
 {
 	t_link	*tmp;
 

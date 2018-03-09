@@ -44,6 +44,6 @@ void		view_ants_moves(t_path *p, t_env *e)
 	while (p->ant != e->ant)
 	{
 		mv_ants(p, e);
-		print_ants(p);
+		print_ants(p, e);
 	}
 }
