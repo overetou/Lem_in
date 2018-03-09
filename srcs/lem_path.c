@@ -53,7 +53,6 @@ int		lem_path(t_env *e)
 	last = queue;
 	while (tmp && x++ != 10)
 	{
-		printf("%s\n", tmp->adress->name);
 		if (process_connections(tmp->adress, &last, e))
 			return (1);
 		tmp = tmp->next;
