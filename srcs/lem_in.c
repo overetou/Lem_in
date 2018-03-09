@@ -60,7 +60,10 @@ void			lem_in(t_env *e)
 	if (!(e->start->link) || !lem_path(e))
 		lem_exit(e, "no path");
 	(e->color) ? print_map_color(e->map) : print_map(e->map);
-	view_ants_moves(get_path(e), e);
+	if (e->path)
+		print_path(get_path(e), e);
+	else
+		view_ants_moves(get_path(e), e);
 }
 
 void			get_arg(int argc, char **argv, t_env *e)
@@ -69,19 +72,19 @@ void			get_arg(int argc, char **argv, t_env *e)
 
 	if (argc != 1)
 	{
-		i = 0;
+		i = 1;
 		while (i != argc)
 		{
 			if (ft_strcmp(argv[i], "-color") == 0)
-			{
 				e->color = 1;
-				return ;
-			}
 			else if (ft_strcmp(argv[i], "-h") == 0)
 				print_help(e);
+			else if (ft_strcmp(argv[i], "-path") == 0)
+				e->path = 1;
+			else
+				lem_exit(e, "Invalid argument(s).");
 			i++;
 		}
-		lem_exit(e, "invalid argument");
 	}
 }
 

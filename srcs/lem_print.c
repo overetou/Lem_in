@@ -88,16 +88,28 @@ void	print_ants(t_path *pth, t_env *e)
 	ft_printf("\n");
 }
 
-//void			print_path(t_path *p)
-//{
-//	ft_putstr("Path : ");
-//	while (p->next)
-//	{
-//		ft_printf("%s <- ", p->name);
-//		p = p->next;
-//	}
-//	ft_putendl(p->name);
-//}
+void			print_path_body(t_path *p)
+{
+	if (p->next)
+	{
+		print_path_body(p->next);
+		ft_printf(" -> ");
+	}
+	ft_putstr(p->name);
+}
+
+void			print_path(t_path *p, t_env *e)
+{
+	if (e->color)
+	{
+		write(1, "\033[01;34m", 8);
+		print_path_body(p);
+		write(1, "\033[0m", 4);
+	}
+	else
+		print_path_body(p);
+	write(1, "\n\n", 2);
+}
 
 void	print_room(t_room *r)
 {
