@@ -54,10 +54,13 @@ int		lem_path(t_env *e)
 	while (tmp && x++ != 10)
 	{
 		if (process_connections(tmp->adress, &last, e))
+		{
+			del_link(queue);
 			return (1);
+		}
 		tmp = tmp->next;
 	}
-	//del_queue(queue);
+	del_link(queue);
 	return (0);
 }
 //----------------------------------------------------------------------------

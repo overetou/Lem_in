@@ -102,6 +102,10 @@ void			print_path(t_path *p, t_env *e);
 */
 
 void			lem_exit(t_env *e, char *msg);
+void			del_room(t_room *r);
+void			del_link(t_link *queue);
+void			del_path(t_path *p);
+void			destroy_data(t_data *data);
 
 //void			print_room(t_room *r);
 

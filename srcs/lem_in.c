@@ -60,10 +60,13 @@ void			lem_in(t_env *e)
 	if (!(e->start->link) || !lem_path(e))
 		lem_exit(e, "no path");
 	(e->color) ? print_map_color(e->map) : print_map(e->map);
+	destroy_data(e->map);
 	if (e->path)
 		print_path(get_path(e), e);
 	else
 		view_ants_moves(get_path(e), e);
+	del_room(e->room);
+	destroy_data(e->cmt);
 }
 
 void			get_arg(int argc, char **argv, t_env *e)

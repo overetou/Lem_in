@@ -12,6 +12,46 @@
 
 #include <lem_in.h>
 
+void		del_path(t_path *p)
+{
+	t_path *next;
+
+	while (p)
+	{
+		next = p->next;
+		free(p->name);
+		free(p);
+		p = next;
+	}
+}
+		
+
+void		del_room(t_room *r)
+{
+	t_room *next;
+
+	while(r)
+	{
+		next = r->next;
+		del_link(r->link);
+		free((r->name));
+		free(r);
+		r = next;
+	}
+}
+		
+
+void		del_link(t_link *queue)
+{
+	t_link *next;
+	while (queue)
+	{
+		next = queue->next;
+		free(queue);
+		queue = next;
+	}
+}
+
 void		destroy_data(t_data *data)
 {
 	if (data)
@@ -30,6 +70,8 @@ void		lem_exit(t_env *e, char *msg)
 		destroy_data(e->map);
 	if (e->cmt)
 		destroy_data(e->cmt);
+	if(e->room)
+		del_room(e->room);
 	if (msg)
 		ft_printf("%s\n", msg);
 	ft_putstr("Usage : ./lem-in [map] -[param]\nparams : -color, -h, -path.\n");

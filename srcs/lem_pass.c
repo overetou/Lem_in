@@ -38,12 +38,13 @@ void		mv_ants(t_path *p, t_env *e)
 
 void		view_ants_moves(t_path *p, t_env *e)
 {
-	t_path	*head;
+	t_path *origin;
 
-	head = p;
+	origin = p;
 	while (p->ant != e->ant)
 	{
 		mv_ants(p, e);
 		print_ants(p, e);
 	}
+	del_path(origin);
 }
