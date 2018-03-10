@@ -44,14 +44,14 @@ int		lem_path(t_env *e)
 	t_link  *queue;
 	t_link  *tmp;
 	t_link  *last;
-	int x = 0;
 
 	e->start->count = 1;
 	queue = (t_link*)malloc(sizeof(t_link));
 	queue->adress = e->start;
+	queue->next = NULL;
 	tmp = queue;
 	last = queue;
-	while (tmp && x++ != 10)
+	while (tmp)
 	{
 		if (process_connections(tmp->adress, &last, e))
 		{
@@ -90,7 +90,7 @@ t_path	*get_path(t_env *e)
 
 	r = e->end;
 	p = create_p_node(r->name, 0);
-    tmp = p;
+    	tmp = p;
 	while (r->count != 2)
 	{
 		r = find_next_room(r->link, (r->count) - 1);
@@ -99,6 +99,6 @@ t_path	*get_path(t_env *e)
 	}
 	r = find_next_room(r->link, (r->count) - 1);
 	tmp->next = create_p_node(r->name, e->ant);
-    tmp->next->next = NULL;
+    	tmp->next->next = NULL;
 	return (p);
 }
