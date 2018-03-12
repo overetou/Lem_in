@@ -15,6 +15,7 @@
 void		store_ant(t_env *e)
 {
 	char *line;
+	char *to_del;
 
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
@@ -27,7 +28,7 @@ void		store_ant(t_env *e)
 		else
 			break ;
 	}
-	if (line == NULL)
+	if (line == NULL || ft_strcmp(to_del = ft_itoa(ft_atoi(line)), line))
 		lem_exit(e, "no ant parsing");
 	e->ant = ft_atoi(line);
 	store_map(&e->map, line);
@@ -39,9 +40,14 @@ void		store_ant(t_env *e)
 void		store_room(t_env *e, char **tab)
 {
 	t_room	*tmp;
-
-	if (!tab[1] || !tab[2] || tab[3] || tab[0][0] == 'L'
-	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2]))
+	int		x;
+	
+	x = 0;
+	while (tab[x])
+		++x;
+	if (x != 3 || tab[0][0] == 'L'
+	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2])
+	|| ft_strchr(tab[0], '-'))
 	{
 		ft_strsplitdel(tab);
 		lem_exit(e, "error on parsing store room");

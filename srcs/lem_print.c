@@ -109,6 +109,7 @@ void			print_path(t_path *p, t_env *e)
 	else
 		print_path_body(p);
 	write(1, "\n\n", 2);
+	del_path(p);
 }
 
 void	print_room(t_room *r)

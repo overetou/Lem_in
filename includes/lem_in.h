@@ -53,6 +53,7 @@ typedef struct	s_env
 	t_data		*cmt;
 	int			color;
 	int			path;
+	char		*line;
 }				t_env;
 
 /*
@@ -68,7 +69,7 @@ void			lem_parse(t_env *e);
 
 void			store_ant(t_env *e);
 void			store_room(t_env *e, char **tab);
-void			store_link(t_env *e, char **tab);
+void			store_link(t_env *e);
 void			store_map(t_data **map, char *line);
 void			store_start_end(t_env *e, char *str);
 void			add_start_end(t_env *e, char **tab, char *str);

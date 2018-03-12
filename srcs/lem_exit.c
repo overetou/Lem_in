@@ -65,7 +65,7 @@ void		destroy_data(t_data *data)
 
 void		lem_exit(t_env *e, char *msg)
 {
-	print_map(e->map);
+	//print_map(e->map);
 	if (e->map)
 		destroy_data(e->map);
 	if (e->cmt)

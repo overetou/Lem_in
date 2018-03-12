@@ -12,6 +12,18 @@
 
 #include <lem_in.h>
 
+int			check_link(t_env *e, char **tab)
+{
+	int	x;
+
+	x = 0;
+	while (tab[x])
+		x++;
+	if (x != 2 || !find_room(tab[0], e) || !find_room(tab[1], e))
+		return (0);
+	return (1);
+}
+
 void		create_link(t_room *room, t_room *adress)
 {
 	t_link	*link;
@@ -44,9 +56,28 @@ void		add_link(t_env *e, char **tab)
 	ft_strsplitdel(tab);
 }
 
-void		store_link(t_env *e, char **tab)
+void		store_link(t_env *e)
 {
-	if (!(!tab[2] && find_room(tab[0], e) && find_room(tab[1], e)))
-		lem_exit(e, "error parse store");
-	add_link(e, tab);
+	char **tab;
+	char *line;
+
+	line = e->line;
+	tab = ft_strsplit(e->line, '-');
+	free(e->line);
+	while (tab)
+	{
+		if (check_link(e, tab))
+			add_link(e, tab);
+		else if (line[0] == '#')
+			store_map(&e->cmt, line);
+		else
+			lem_exit(e, "Error in link declaration or \"-\" in room declaration.\n");
+		tab = NULL;
+		if (get_next_line(0, &line) > 0)
+		{
+			store_map(&e->map, line);
+			tab = ft_strsplit(line, '-');
+			free(line);
+		}
+	}
 }

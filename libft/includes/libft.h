@@ -19,7 +19,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 32
 # define FD_SIZE 0
 
 typedef struct	s_list

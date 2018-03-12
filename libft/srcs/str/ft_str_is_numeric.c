@@ -18,6 +18,8 @@ int				ft_str_is_numeric(char *str)
 	char	cur;
 
 	i = 0;
+	if (str[0] == '-')
+		i++;
 	while (str[i])
 	{
 		cur = str[i];

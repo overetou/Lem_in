@@ -42,7 +42,11 @@ void			lem_parse(t_env *e)
 		else if (ft_strchr(line, ' '))
 			store_room(e, ft_strsplit(line, ' '));
 		else if (ft_strchr(line, '-'))
-			store_link(e, ft_strsplit(line, '-'));
+		{
+			e->line = line;
+			store_link(e);
+			break;
+		}
 		else
 		{
 			free(line);
