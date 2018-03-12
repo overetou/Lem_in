@@ -24,5 +24,6 @@ start-midway
 midway-end
 
 lines preceded by a single # may be placed anywhere in the map.
+
 Usage : ./lem-in < [map] -[param]
 params : -color, -help, -path, -error -comment.
