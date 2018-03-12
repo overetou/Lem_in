@@ -55,7 +55,6 @@ void		add_link(t_env *e, char **tab)
 	create_link(e, tmp, find_room(tab[1], e));
 	tmp = find_room(tab[1], e);
 	create_link(e, tmp, find_room(tab[0], e));
-	ft_strsplitdel(tab);
 }
 
 void		store_link(t_env *e, char *line)

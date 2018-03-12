@@ -73,6 +73,6 @@ void		lem_exit(t_env *e, char *msg)
 	if (e->room)
 		del_room(e->room);
 	if (msg)
-		ft_printf("%s\n", msg);
+		ft_printf("%s", msg);
 	exit(0);
 }
