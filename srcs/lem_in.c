@@ -32,13 +32,13 @@ void			lem_parse(t_env *e)
 	store_ant(e);
 	while (get_next_line(0, &line) > 0)
 	{
-		store_map(&e->map, line);
+		store_map(e, &e->map, line);
 		if (!ft_strcmp(line, "##start"))
 			store_start_end(e, "##start");
 		else if (!ft_strcmp(line, "##end"))
 			store_start_end(e, "##end");
 		else if (line[0] == '#')
-			store_map(&e->cmt, line);
+			store_map(e, &e->cmt, line);
 		else if (ft_strchr(line, ' '))
 			store_room(e, ft_strsplit(line, ' '));
 		else if (ft_strchr(line, '-'))

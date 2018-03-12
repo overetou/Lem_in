@@ -69,13 +69,13 @@ void		store_link(t_env *e)
 		if (check_link(e, tab))
 			add_link(e, tab);
 		else if (line[0] == '#')
-			store_map(&e->cmt, line);
+			store_map(e, &e->cmt, line);
 		else
 			lem_exit(e, "Error in link declaration or \"-\" in room declaration.\n");
 		tab = NULL;
 		if (get_next_line(0, &line) > 0)
 		{
-			store_map(&e->map, line);
+			store_map(e, &e->map, line);
 			tab = ft_strsplit(line, '-');
 			free(line);
 		}

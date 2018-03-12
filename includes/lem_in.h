@@ -70,7 +70,7 @@ void			lem_parse(t_env *e);
 void			store_ant(t_env *e);
 void			store_room(t_env *e, char **tab);
 void			store_link(t_env *e);
-void			store_map(t_data **map, char *line);
+void			store_map(t_env *e, t_data **map, char *line);
 void			store_start_end(t_env *e, char *str);
 void			add_start_end(t_env *e, char **tab, char *str);
 

@@ -22,7 +22,7 @@ void		store_ant(t_env *e)
 	{
 		if (line[0] == '#')
 		{
-			store_map(&e->map, line);
+			store_map(e, &e->map, line);
 			free(line);
 		}
 		else
@@ -31,7 +31,7 @@ void		store_ant(t_env *e)
 	if (line == NULL || ft_strcmp(to_del = ft_itoa(ft_atoi(line)), line))
 		lem_exit(e, "no ant parsing");
 	e->ant = ft_atoi(line);
-	store_map(&e->map, line);
+	store_map(e, &e->map, line);
 	free(line);
 	if (e->ant <= 0)
 		lem_exit(e, "0 or negative ant");
@@ -96,24 +96,25 @@ void		store_start_end(t_env *e, char *str)
 	{
 		if (line[0] == '#')
 		{
-			store_map(&e->map, line);
+			store_map(e, &e->map, line);
 			free(line);
 		}
 		else
 			break ;
 	}
 	add_start_end(e, ft_strsplit(line, ' '), str);
-	store_map(&e->map, line);
+	store_map(e, &e->map, line);
 	free(line);
 }
 
-void		store_map(t_data **map, char *line)
+void		store_map(t_env *e, t_data **map, char *line)
 {
 	t_data	*new;
 	t_data	*tmp;
 
-	new = ft_memalloc(sizeof(t_data));
-	new->name = ft_strdup(line);
+	if (!(new = ft_memalloc(sizeof(t_data)))
+	|| !(new->name = ft_strdup(line)))
+		lem_exit(e, "Malloc failed.\n");
 	tmp = *map;
 	if (!tmp)
 	{
