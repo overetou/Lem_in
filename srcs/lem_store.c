@@ -17,6 +17,7 @@ void		store_ant(t_env *e)
 	char *line;
 	char *to_del;
 
+	to_del = NULL;
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
@@ -33,6 +34,8 @@ void		store_ant(t_env *e)
 	e->ant = ft_atoi(line);
 	store_map(e, &e->map, line);
 	free(line);
+	if (to_del)
+		free(to_del);
 	if (e->ant <= 0)
 		lem_exit(e, "ERROR\n");
 }
@@ -45,9 +48,8 @@ void		store_room(t_env *e, char **tab)
 	x = 0;
 	while (tab[x])
 		++x;
-	if (x != 3 || tab[0][0] == 'L'
-	|| !ft_str_is_numeric(tab[1]) || !ft_str_is_numeric(tab[2])
-	|| ft_strchr(tab[0], '-'))
+	if (x != 3 || tab[0][0] == 'L' || !ft_str_is_numeric(tab[1])
+	|| !ft_str_is_numeric(tab[2]) || ft_strchr(tab[0], '-'))
 	{
 		ft_strsplitdel(tab);
 		lem_exit(e, "ERROR\n");

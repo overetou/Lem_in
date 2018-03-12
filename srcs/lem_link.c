@@ -71,7 +71,11 @@ void		store_link(t_env *e, char *line)
 		else if (line[0] == '#')
 			store_map(e, &e->cmt, line);
 		else
+		{
+			ft_strsplitdel(tab);
 			lem_exit(e, "ERROR\n");
+		}
+		ft_strsplitdel(tab);
 		tab = NULL;
 		if (get_next_line(0, &line) > 0)
 		{
