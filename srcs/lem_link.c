@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/09 14:17:58 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:44:44 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ int			check_link(t_env *e, char **tab)
 	return (1);
 }
 
-void		create_link(t_room *room, t_room *adress)
+void		create_link(t_env *e, t_room *room, t_room *adress)
 {
 	t_link	*link;
 
 	if (!(room->link))
 	{
-		room->link = (t_link*)malloc(sizeof(t_link));
+		if (!(room->link = (t_link*)malloc(sizeof(t_link))))
+			lem_exit(e, NULL);
 		(room->link)->adress = adress;
 		(room->link)->next = NULL;
 	}
@@ -39,7 +40,8 @@ void		create_link(t_room *room, t_room *adress)
 		link = room->link;
 		while (link->next)
 			link = link->next;
-		link->next = (t_link*)malloc(sizeof(t_link));
+		if (!(link->next = (t_link*)malloc(sizeof(t_link))))
+			lem_exit(e, NULL);
 		link->next->adress = adress;
 		link->next->next = NULL;
 	}
@@ -50,20 +52,18 @@ void		add_link(t_env *e, char **tab)
 	t_room	*tmp;
 
 	tmp = find_room(tab[0], e);
-	create_link(tmp, find_room(tab[1], e));
+	create_link(e, tmp, find_room(tab[1], e));
 	tmp = find_room(tab[1], e);
-	create_link(tmp, find_room(tab[0], e));
+	create_link(e, tmp, find_room(tab[0], e));
 	ft_strsplitdel(tab);
 }
 
-void		store_link(t_env *e)
+void		store_link(t_env *e, char *line)
 {
 	char **tab;
-	char *line;
 
-	line = e->line;
-	tab = ft_strsplit(e->line, '-');
-	free(e->line);
+	tab = ft_strsplit(line, '-');
+	free(line);
 	while (tab)
 	{
 		if (check_link(e, tab))
@@ -71,7 +71,7 @@ void		store_link(t_env *e)
 		else if (line[0] == '#')
 			store_map(e, &e->cmt, line);
 		else
-			lem_exit(e, "Error in link declaration or \"-\" in room declaration.\n");
+			lem_exit(e, "ERROR\n");
 		tab = NULL;
 		if (get_next_line(0, &line) > 0)
 		{

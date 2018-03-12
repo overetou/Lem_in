@@ -6,13 +6,13 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 16:21:49 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/09 14:18:50 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:16:59 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-void	print_map_color(t_data *map)
+void		print_map_color(t_data *map)
 {
 	while (map)
 	{
@@ -35,7 +35,7 @@ void	print_map_color(t_data *map)
 	ft_printf("\n");
 }
 
-void	print_map(t_data *map)
+void		print_map(t_data *map)
 {
 	while (map)
 	{
@@ -45,21 +45,21 @@ void	print_map(t_data *map)
 	ft_printf("\n");
 }
 
-void	print_first(t_path *p, t_path *pth, t_env *e)
+void		print_first(t_path *p, t_path *pth, t_env *e)
 {
 	if (e->color)
 	{
-		ft_printf("\033[01;35mL%d", p->a_name);
+		ft_printf("\033[01;35mL%d", p->an);
 		if (p == pth)
-			ft_printf("\033[22;32m-%s\033[0m", p->name);
+			ft_printf("\033[22;32m-%s\033[0m", p->n);
 		else
-			ft_printf("\033[01;34m-%s\033[0m", p->name);
+			ft_printf("\033[01;34m-%s\033[0m", p->n);
 	}
 	else
-		ft_printf("L%d-%s", p->a_name, p->name);
+		ft_printf("L%d-%s", p->an, p->n);
 }
 
-void	print_ants(t_path *pth, t_env *e)
+void		print_ants(t_path *pth, t_env *e)
 {
 	t_path	*p;
 
@@ -79,55 +79,21 @@ void	print_ants(t_path *pth, t_env *e)
 		if (p->ant)
 		{
 			if (e->color)
-				ft_printf(" \033[01;35mL%d\033[01;34m-%s\033[0m", p->a_name, p->name);
+				ft_printf(" \033[01;35mL%d\033[01;34m-%s\033[0m", p->an, p->n);
 			else
-				ft_printf(" L%d-%s", p->a_name, p->name);
+				ft_printf(" L%d-%s", p->an, p->n);
 		}
 		p = p->next;
 	}
 	ft_printf("\n");
 }
 
-void			print_path_body(t_path *p)
+void		print_path_body(t_path *p)
 {
 	if (p->next)
 	{
 		print_path_body(p->next);
 		ft_printf(" -> ");
 	}
-	ft_putstr(p->name);
-}
-
-void			print_path(t_path *p, t_env *e)
-{
-	if (e->color)
-	{
-		write(1, "\033[01;34m", 8);
-		print_path_body(p);
-		write(1, "\033[0m", 4);
-	}
-	else
-		print_path_body(p);
-	write(1, "\n\n", 2);
-	del_path(p);
-}
-
-void	print_room(t_room *r)
-{
-	t_link	*tmp;
-
-	while (r)
-	{
-		write(1, "----------\n", 11);
-		ft_printf("Name = %s\n\n", r->name);
-		tmp = r->link;
-		ft_printf("Connected to : \n");
-		while (tmp)
-		{
-			ft_printf("-%s\n", tmp->adress->name);
-			tmp = tmp->next;
-		}
-		write(1, "----------\n", 11);
-		r = r->next;
-	}
+	ft_putstr(p->n);
 }

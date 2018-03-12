@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:39 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/09 13:39:13 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:17:20 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,17 @@ void		del_path(t_path *p)
 	while (p)
 	{
 		next = p->next;
-		free(p->name);
+		free(p->n);
 		free(p);
 		p = next;
 	}
 }
-		
 
 void		del_room(t_room *r)
 {
 	t_room *next;
 
-	while(r)
+	while (r)
 	{
 		next = r->next;
 		del_link(r->link);
@@ -39,11 +38,11 @@ void		del_room(t_room *r)
 		r = next;
 	}
 }
-		
 
 void		del_link(t_link *queue)
 {
 	t_link *next;
+
 	while (queue)
 	{
 		next = queue->next;
@@ -65,12 +64,13 @@ void		destroy_data(t_data *data)
 
 void		lem_exit(t_env *e, char *msg)
 {
-	//print_map(e->map);
+	if (e->error)
+		print_map(e->map);
 	if (e->map)
 		destroy_data(e->map);
 	if (e->cmt)
 		destroy_data(e->cmt);
-	if(e->room)
+	if (e->room)
 		del_room(e->room);
 	if (msg)
 		ft_printf("%s\n", msg);

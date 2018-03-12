@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:50:20 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/09 14:15:18 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:57:00 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ void		store_ant(t_env *e)
 			break ;
 	}
 	if (line == NULL || ft_strcmp(to_del = ft_itoa(ft_atoi(line)), line))
-		lem_exit(e, "no ant parsing");
+		lem_exit(e, "ERROR\n");
 	e->ant = ft_atoi(line);
 	store_map(e, &e->map, line);
 	free(line);
 	if (e->ant <= 0)
-		lem_exit(e, "0 or negative ant");
+		lem_exit(e, "ERROR\n");
 }
 
 void		store_room(t_env *e, char **tab)
 {
 	t_room	*tmp;
 	int		x;
-	
+
 	x = 0;
 	while (tab[x])
 		++x;
@@ -50,16 +50,16 @@ void		store_room(t_env *e, char **tab)
 	|| ft_strchr(tab[0], '-'))
 	{
 		ft_strsplitdel(tab);
-		lem_exit(e, "error on parsing store room");
+		lem_exit(e, "ERROR\n");
 	}
 	if (!e->room)
-		e->room = add_room(tab[0]);
+		e->room = add_room(e, tab[0]);
 	else
 	{
 		tmp = e->room;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = add_room(tab[0]);
+		tmp->next = add_room(e, tab[0]);
 	}
 	ft_strsplitdel(tab);
 }
@@ -70,7 +70,7 @@ void		add_start_end(t_env *e, char **tab, char *str)
 
 	if (!(e->room))
 	{
-		e->room = add_room(tab[0]);
+		e->room = add_room(e, tab[0]);
 		tmp = e->room;
 	}
 	else
@@ -78,7 +78,7 @@ void		add_start_end(t_env *e, char **tab, char *str)
 		tmp = e->room;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = add_room(tab[0]);
+		tmp->next = add_room(e, tab[0]);
 		tmp = tmp->next;
 	}
 	if (!ft_strcmp(str, "##start"))
@@ -114,7 +114,7 @@ void		store_map(t_env *e, t_data **map, char *line)
 
 	if (!(new = ft_memalloc(sizeof(t_data)))
 	|| !(new->name = ft_strdup(line)))
-		lem_exit(e, "Malloc failed.\n");
+		lem_exit(e, "ERROR\n");
 	tmp = *map;
 	if (!tmp)
 	{

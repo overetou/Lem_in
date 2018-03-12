@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/09 14:17:43 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:47:56 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			lem_parse(t_env *e)
 {
 	char *line;
 
-	store_ant(e);
 	while (get_next_line(0, &line) > 0)
 	{
 		store_map(e, &e->map, line);
@@ -43,14 +42,13 @@ void			lem_parse(t_env *e)
 			store_room(e, ft_strsplit(line, ' '));
 		else if (ft_strchr(line, '-'))
 		{
-			e->line = line;
-			store_link(e);
-			break;
+			store_link(e, line);
+			break ;
 		}
 		else
 		{
 			free(line);
-			lem_exit(e, "Error on parsing");
+			lem_exit(e, "ERROR\n");
 		}
 		free(line);
 	}
@@ -58,11 +56,12 @@ void			lem_parse(t_env *e)
 
 void			lem_in(t_env *e)
 {
+	store_ant(e);
 	lem_parse(e);
 	if (!e->start || !e->end)
-		lem_exit(e, "no ##start or ##end");
+		lem_exit(e, "ERROR\n");
 	if (!(e->start->link) || !lem_path(e))
-		lem_exit(e, "no path");
+		lem_exit(e, "ERROR\n");
 	(e->color) ? print_map_color(e->map) : print_map(e->map);
 	destroy_data(e->map);
 	if (e->path)
@@ -82,12 +81,14 @@ void			get_arg(int argc, char **argv, t_env *e)
 		i = 1;
 		while (i != argc)
 		{
-			if (ft_strcmp(argv[i], "-color") == 0)
+			if (!ft_strcmp(argv[i], "-color"))
 				e->color = 1;
-			else if (ft_strcmp(argv[i], "-h") == 0)
+			else if (!ft_strcmp(argv[i], "-help"))
 				print_help(e);
-			else if (ft_strcmp(argv[i], "-path") == 0)
+			else if (!ft_strcmp(argv[i], "-path"))
 				e->path = 1;
+			else if (!ft_strcmp(argv[i], "-error"))
+				e->error = 1;
 			else
 				lem_exit(e, "Invalid argument(s).");
 			i++;

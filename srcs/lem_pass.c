@@ -6,11 +6,37 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 21:12:30 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/09 14:16:38 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:18:10 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
+
+int			lem_path(t_env *e)
+{
+	t_link	*queue;
+	t_link	*tmp;
+	t_link	*last;
+
+	e->start->count = 1;
+	if (!(queue = (t_link*)malloc(sizeof(t_link))))
+		lem_exit(e, "ERROR\n");
+	queue->adress = e->start;
+	queue->next = NULL;
+	tmp = queue;
+	last = queue;
+	while (tmp)
+	{
+		if (process_connections(tmp->adress, &last, e))
+		{
+			del_link(queue);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+	del_link(queue);
+	return (0);
+}
 
 void		mv_ants(t_path *p, t_env *e)
 {
@@ -21,7 +47,7 @@ void		mv_ants(t_path *p, t_env *e)
 	{
 		if (next->ant)
 		{
-			p->a_name = next->a_name;
+			p->an = next->an;
 			p->ant += 1;
 			next->ant = 0;
 		}
@@ -31,7 +57,7 @@ void		mv_ants(t_path *p, t_env *e)
 	if (next->ant)
 	{
 		(next->ant)--;
-		p->a_name = e->ant - next->ant;
+		p->an = e->ant - next->ant;
 		p->ant += 1;
 	}
 }
