@@ -9,7 +9,7 @@ A correct map contains 3 parts, in the given order :
 
 Room field pattern :
 	"name coord(x) coord(y)"
-tube field pattern :
+Tube field pattern :
 	name(1)-name(2)
 The starting point must be preceded by ##start and the ending point by ##end.
 
@@ -23,7 +23,8 @@ end 0 2
 start-midway
 midway-end
 
-lines preceded by a single # may be placed anywhere in the map.
+Lines preceded by a single # may be placed anywhere in the map.
 
 Usage : ./lem-in < [map] -[param]
-params : -color, -help, -path, -error -comment.
+
+Params : -color, -help, -path, -error -comment.
