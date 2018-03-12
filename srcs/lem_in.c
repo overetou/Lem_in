@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/12 19:32:01 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 23:37:14 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			get_arg(int argc, char **argv, t_env *e)
 			else if (!ft_strcmp(argv[i], "-comment"))
 				e->comment = 1;
 			else
-				lem_exit(e, "Invalid argument(s).");
+				lem_exit(e, "Invalid argument(s).\n");
 			i++;
 		}
 	}

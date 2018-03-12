@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 19:45:02 by overetou          #+#    #+#             */
-/*   Updated: 2018/03/12 18:44:44 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 23:37:00 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		store_link(t_env *e, char *line)
 		else
 		{
 			ft_strsplitdel(tab);
-			lem_exit(e, "ERROR\n");
+			break ;
 		}
 		ft_strsplitdel(tab);
 		tab = NULL;
