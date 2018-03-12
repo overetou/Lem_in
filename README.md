@@ -1,4 +1,4 @@
-#Lem-in Project by overetou & kenguyen
+#Lem-in 42 Project by overetou & kenguyen
 
 Guide :
 
@@ -27,4 +27,4 @@ Lines preceded by a single # may be placed anywhere in the map.
 
 Usage : ./lem-in < [map] -[param]
 
-Params : -color, -help, -path, -error -comment.
+Params : -color, -help, -path, -error, -comment.
