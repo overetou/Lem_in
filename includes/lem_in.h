@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 18:01:17 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/12 19:19:27 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:29:03 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_env
 	int			color;
 	int			path;
 	int			error;
+	int			comment;
 }				t_env;
 
 /*

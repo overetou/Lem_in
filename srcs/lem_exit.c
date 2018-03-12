@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:39 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/12 19:17:20 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:27:05 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,5 @@ void		lem_exit(t_env *e, char *msg)
 		del_room(e->room);
 	if (msg)
 		ft_printf("%s\n", msg);
-	ft_putstr("Usage : ./lem-in [map] -[param]\nparams : -color, -h, -path.\n");
 	exit(0);
 }

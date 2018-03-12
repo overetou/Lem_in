@@ -6,7 +6,7 @@
 /*   By: kenguyen <kenguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:41:59 by kenguyen          #+#    #+#             */
-/*   Updated: 2018/03/12 18:47:56 by kenguyen         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:32:01 by kenguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void			print_help(t_env *e)
 	ft_printf("Example :\n5\n##start\nstart 0 0\nmidway 0 1\n##end\n");
 	ft_printf("end 0 2\nstart-midway\nmidway-end\n\nlines preceded by");
 	ft_printf(" a single # may be placed anywhere in the map.\n");
+	ft_printf("Usage : ./lem-in [map] -[param]\nparams : ");
+	ft_printf("-color, -help, -path, -error -comment.\n");
 	lem_exit(e, NULL);
 }
 
@@ -64,6 +66,8 @@ void			lem_in(t_env *e)
 		lem_exit(e, "ERROR\n");
 	(e->color) ? print_map_color(e->map) : print_map(e->map);
 	destroy_data(e->map);
+	if (e->comment)
+		print_map(e->cmt);
 	if (e->path)
 		print_path(get_path(e), e);
 	else
@@ -89,6 +93,8 @@ void			get_arg(int argc, char **argv, t_env *e)
 				e->path = 1;
 			else if (!ft_strcmp(argv[i], "-error"))
 				e->error = 1;
+			else if (!ft_strcmp(argv[i], "-comment"))
+				e->comment = 1;
 			else
 				lem_exit(e, "Invalid argument(s).");
 			i++;
