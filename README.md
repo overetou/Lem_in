@@ -11,6 +11,7 @@ Room field pattern :
 	"name coord(x) coord(y)"
 Tube field pattern :
 	name(1)-name(2)
+	
 The starting point must be preceded by ##start and the ending point by ##end.
 
 Example :
